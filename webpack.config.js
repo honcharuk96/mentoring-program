@@ -1,28 +1,42 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const { merge } = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const modeConfiguration = env => require(`./build-utils/webpack.${env}`)(env);
 
-module.exports = {
-  entry: "./src/index.js",
-  output: {
-    path: path.join(__dirname, "/dist"),
-    filename: "index-bundle.js"
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"]
-      },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
-    ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html"
-    })
-  ]
+module.exports = ({ mode } = { mode: 'production' }) => {
+    console.log(`mode is: ${mode}`);
+    const output = (mode === 'production') ? './' : '/';
+
+    return merge({
+        mode,
+        entry: './src/index.js',
+        devServer: {
+            hot: true,
+            open: true,
+        },
+        output: {
+            publicPath: output,
+            path: path.resolve(__dirname, 'build'),
+            filename: 'bundle.js',
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.(js|jsx)$/,
+                    exclude: /node_modules/,
+                    loader: 'babel-loader',
+                },
+            ],
+        },
+
+        plugins: [
+            new HtmlWebpackPlugin({
+                template: './public/index.html',
+            }),
+            new webpack.HotModuleReplacementPlugin(),
+        ],
+    },
+        modeConfiguration(mode),
+    );
 };
