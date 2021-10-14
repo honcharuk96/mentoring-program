@@ -1,19 +1,17 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import styled from 'styled-components';
-
-const Wrapper = styled.div`
-  width: 1280px;
-  height: 720px;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
+import HeaderComponent from './header/header.component';
+import GlobalStyles from './global/globalStyles';
+import FooterComponent from './footer/footer.component';
+import PostersBlock from './postersBlock/postersBlock.component';
 
 const App = () => (
-  <Wrapper>
-    <h1>I'm configuring setting up Webpack!!!</h1>
-  </Wrapper>
+  <>
+    <GlobalStyles />
+    <HeaderComponent />
+    <PostersBlock />
+    <FooterComponent />
+  </>
 );
 
 export default hot(module)(App);
