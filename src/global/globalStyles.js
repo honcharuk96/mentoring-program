@@ -47,7 +47,6 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-
 export default GlobalStyles;
 
 export const MainWrapper = styled.div`

@@ -4,13 +4,16 @@ import HeaderComponent from './header/header.component';
 import GlobalStyles from './global/globalStyles';
 import FooterComponent from './footer/footer.component';
 import PostersBlock from './postersBlock/postersBlock.component';
+import ErrorBoundary from './global/components/errorComponent/errorBoundary.component';
 
 const App = () => (
   <>
-    <GlobalStyles />
-    <HeaderComponent />
-    <PostersBlock />
-    <FooterComponent />
+    <ErrorBoundary>
+      <GlobalStyles />
+      <HeaderComponent />
+      <PostersBlock />
+      <FooterComponent />
+    </ErrorBoundary>
   </>
 );
 
