@@ -35,7 +35,7 @@ module.exports = {
         'import/prefer-default-export': 'off',
         'react/destructuring-assignment': 'off',
         'react/jsx-props-no-spreading': 'off',
-        'react/state-in-constructor': ['error', 'never'],
+        'react/state-in-constructor': ['error', 'always'],
         'jsx-a11y/label-has-for': 'off',
         'jsx-a11y/label-has-associated-control': 'off',
         'react/no-array-index-key': 'off',

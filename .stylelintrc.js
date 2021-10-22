@@ -3,15 +3,6 @@ module.exports = {
   extends: ['stylelint-config-recommended', 'stylelint-config-styled-components'],
   plugins: ['stylelint-order'],
   rules: {
-    'declaration-property-value-disallowed-list': {
-      display: ['/grid/', '/flex/'],
-      'justify-content': '/.*/',
-      'flex-direction': '/.*/',
-      'align-items': '/.*/',
-      'align-self': '/.*/',
-      'align-content': '/.*/',
-      'justify-self': '/.*/',
-    },
     'declaration-no-important': true,
     'block-no-empty': null,
     'order/properties-order': [

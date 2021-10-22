@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const modeConfiguration = env => require(`./build-utils/webpack.${env}`)(env);
 
 module.exports = ({ mode } = { mode: 'production' }) => {
-    console.log(`mode is: ${mode}`);
     const output = (mode === 'production') ? './' : '/';
 
     return merge({
@@ -15,6 +14,7 @@ module.exports = ({ mode } = { mode: 'production' }) => {
             hot: true,
             open: true,
         },
+
         output: {
             publicPath: output,
             path: path.resolve(__dirname, 'build'),
@@ -27,10 +27,27 @@ module.exports = ({ mode } = { mode: 'production' }) => {
                     exclude: /node_modules/,
                     loader: 'babel-loader',
                 },
+                {
+                    test: /\.(png|jpe?g|gif)$/i,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                        },
+                    ],
+                },
+                {
+                    test: /\.(woff|woff2|eot|svg|ttf)$/,
+                    use: {
+                        loader: 'url-loader',
+                    },
+                },
             ],
         },
 
         plugins: [
+            new webpack.ProvidePlugin({
+                'React': 'react',
+            }),
             new HtmlWebpackPlugin({
                 template: './public/index.html',
             }),
