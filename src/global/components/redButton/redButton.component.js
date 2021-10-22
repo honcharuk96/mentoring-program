@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RedButtonWrapper } from './redButton.styled';
+import { RedButton } from './redButton.styled';
 
-const RedButton = ({ text }) => (
+const RedButtonComponent = ({ text }) => (
   <>
-    <RedButtonWrapper>{text}</RedButtonWrapper>
+    <RedButton>{text}</RedButton>
   </>
 );
 
-export default RedButton;
+export default RedButtonComponent;
 
-RedButton.propTypes = {
+RedButtonComponent.propTypes = {
   text: PropTypes.string.isRequired,
 };

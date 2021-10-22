@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-export const PostersWrapper = styled.div`
+export const Posters = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
 `;
 
-export const PosterWrapper = styled.div`
+export const Poster = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 320px;
@@ -18,7 +18,7 @@ export const Img = styled.img`
   height: 480px;
 `;
 
-export const PosterInfoWrapper = styled.div`
+export const PosterInfo = styled.div`
   display: flex;
   justify-content: space-between;
   padding-top: 20px;
@@ -34,7 +34,7 @@ export const PosterTitle = styled.div`
   mix-blend-mode: normal;
 `;
 
-export const DateWrapper = styled.div`
+export const Date = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

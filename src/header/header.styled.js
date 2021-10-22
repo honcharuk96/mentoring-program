@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import headerImg from '../../public/images/Header.png';
-export const HeaderWrapper = styled.div`
+export const Header = styled.div`
   height: 400px;
   background-image: url(${headerImg});
   padding: 50px;

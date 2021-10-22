@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PosterCategoryWrapper = styled.div`
+export const PosterCategory = styled.div`
   padding-top: 8px;
   opacity: 0.5;
   color: #ffffff;

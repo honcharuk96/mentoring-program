@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const RedButtonWrapper = styled.div`
+export const RedButton = styled.div`
   padding: 18px 70px;
   border-radius: 4px;
   background: #f65261;

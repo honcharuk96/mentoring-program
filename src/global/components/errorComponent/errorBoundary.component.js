@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    // eslint-disable-next-line react/state-in-constructor
     this.state = { hasError: false };
   }
 

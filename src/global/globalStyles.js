@@ -49,7 +49,7 @@ const GlobalStyles = createGlobalStyle`
 
 export default GlobalStyles;
 
-export const MainWrapper = styled.div`
+export const Main = styled.div`
   padding: 0 50px;
   background: #232323;
 `;
