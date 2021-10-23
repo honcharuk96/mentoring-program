@@ -1,19 +1,24 @@
 import React from 'react';
-import {Date, Img, PosterInfo, Posters, PosterTitle, Poster} from './postersBlock.styled';
-import PosterCategory from './posterCategory/posterCategory.component';
+import { Posters} from './postersBlock.styled';
 import PropTypes from 'prop-types';
+import {withForm} from './posterHoc/poster.hoc';
+import PosterComponent from './poster.component';
 
 const ListPosters = ({ posters }) => (
     <Posters>
         {posters.map(poster => (
-            <Poster key={poster.id}>
-                <Img src={poster.poster_path} alt={poster.title} />
-                <PosterInfo>
-                    <PosterTitle>{poster.title}</PosterTitle>
-                    <Date>{poster.release_date.slice(0, 4)}</Date>
-                </PosterInfo>
-                <PosterCategory genres={poster.genres} />
-            </Poster>
+            <PosterWithForm
+                key={poster.id}
+                id={poster.id}
+                src={poster.poster_path}
+                alt={poster.title}
+                title={poster.title}
+                date={poster.release_date}
+                genres={poster.genres}
+                rating={poster.vote_average}
+                runtime={poster.runtime}
+                overview={poster.overview}
+            />
         ))}
     </Posters>
 );
@@ -42,3 +47,8 @@ ListPosters.propTypes = {
 ListPosters.defaultProps = {
     posters: [],
 };
+
+
+
+
+const PosterWithForm = withForm(PosterComponent);

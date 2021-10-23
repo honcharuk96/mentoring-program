@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { HeaderWrapper, TopMenu } from './header.styled';
+import { Header, TopMenu } from './header.styled';
 import SearchForm from './searchForm/searchForm.component';
 import LogoComponent from '../global/components/logo/logo.component';
 import PosterForm from '../postersBlock/posterForm/posterForm.component';
@@ -13,14 +13,14 @@ const HeaderComponent = () => {
 
   return (
     <>
-      <HeaderWrapper>
+      <Header>
         <TopMenu>
           <LogoComponent />
           <ButtonMovie onClick={() => changeStateModal()} />
           {showAddEdit && <PosterForm showAddEdit={showAddEdit} parentFunc={() => changeStateModal()} />}
         </TopMenu>
         <SearchForm />
-      </HeaderWrapper>
+      </Header>
     </>
   );
 };
