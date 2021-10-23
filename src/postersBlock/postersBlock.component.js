@@ -6,6 +6,7 @@ import { MainWrapper } from '../global/globalStyles';
 import PosterCategory from './posterCategory/posterCategory.component';
 import NavigationCategory from './navigationCategory/navigationCategory.component';
 import PropTypes from 'prop-types';
+import { withForm } from './posterHoc/poster.hoc';
 
 const links = [
   { id: 0, text: 'all' },
@@ -41,14 +42,18 @@ export default PostersBlock;
 const ListPosters = memo(({ posters }) => (
   <PostersWrapper>
     {posters.map(poster => (
-      <PosterWrapper key={poster.id}>
-        <Img src={poster.poster_path} alt={poster.title} />
-        <PosterInfoWrapper>
-          <PosterTitle>{poster.title}</PosterTitle>
-          <DateWrapper>{poster.release_date.slice(0, 4)}</DateWrapper>
-        </PosterInfoWrapper>
-        <PosterCategory genres={poster.genres} />
-      </PosterWrapper>
+      <PosterWithForm
+        key={poster.id}
+        id={poster.id}
+        src={poster.poster_path}
+        alt={poster.title}
+        title={poster.title}
+        date={poster.release_date}
+        genres={poster.genres}
+        rating={poster.vote_average}
+        runtime={poster.runtime}
+        overview={poster.overview}
+      />
     ))}
   </PostersWrapper>
 ));
@@ -77,3 +82,27 @@ ListPosters.propTypes = {
 ListPosters.defaultProps = {
   posters: [],
 };
+
+const Poster = memo(({ id, src, alt, title, date, genres }) => (
+  <PosterWrapper key={id} id={id}>
+    <Img src={src} alt={alt} />
+    <PosterInfoWrapper>
+      <PosterTitle>{title}</PosterTitle>
+      <DateWrapper>{date.slice(0, 4)}</DateWrapper>
+    </PosterInfoWrapper>
+    <PosterCategory genres={genres} />
+  </PosterWrapper>
+));
+
+Poster.displayName = 'Poster';
+
+Poster.propTypes = {
+  id: PropTypes.number.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string),
+  src: PropTypes.string,
+  date: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
+const PosterWithForm = withForm(Poster);
