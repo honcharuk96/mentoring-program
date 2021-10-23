@@ -1,16 +1,16 @@
 import React from 'react';
-import { InputsWrapper, SearchInput, SearchWrapper, Text } from './searchForm.styled';
+import { Inputs, SearchInput, Search, Text } from './searchForm.styled';
 import RedButton from '../../global/components/redButton/redButton.component';
 
 const SearchForm = () => (
   <>
-    <SearchWrapper>
+    <Search>
       <Text>FIND YOUR MOViE</Text>
-      <InputsWrapper>
+      <Inputs>
         <SearchInput />
         <RedButton text="search" />
-      </InputsWrapper>
-    </SearchWrapper>
+      </Inputs>
+    </Search>
   </>
 );
 

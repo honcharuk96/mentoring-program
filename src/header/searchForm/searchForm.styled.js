@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SearchWrapper = styled.div`
+export const Search = styled.div`
   display: flex;
   flex-direction: column;
   place-content: stretch center;
@@ -10,7 +10,7 @@ export const SearchWrapper = styled.div`
   margin: auto;
 `;
 
-export const InputsWrapper = styled.div`
+export const Inputs = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;

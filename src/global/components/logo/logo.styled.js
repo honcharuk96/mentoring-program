@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export const LogoWrapper = styled.div`
+export const Logo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

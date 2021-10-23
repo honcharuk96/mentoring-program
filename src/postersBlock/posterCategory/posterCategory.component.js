@@ -1,20 +1,20 @@
-import React from 'react';
-import { PosterCategoryWrapper } from './posterCategory.styled';
+import React, {memo} from 'react';
+import { PosterCategory } from './posterCategory.styled';
 import PropTypes from 'prop-types';
 
-const PosterCategory = ({ genres }) => (
-  <PosterCategoryWrapper>
+const PosterCategoryComponent = ({ genres }) => (
+  <PosterCategory>
     {genres.map((genre, index) => (
       <span key={index}>
         {genre}
         {index < genres.length - 1 && ', '}
       </span>
     ))}
-  </PosterCategoryWrapper>
+  </PosterCategory>
 );
 
-export default React.memo(PosterCategory);
+export default memo(PosterCategoryComponent);
 
-PosterCategory.propTypes = {
+PosterCategoryComponent.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string.isRequired),
 };

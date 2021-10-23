@@ -1,11 +1,11 @@
 import React from 'react';
-import { LogoWrapper } from './logo.styled';
+import { Logo } from './logo.styled';
 import { Bold } from '../../globalStyles';
 
 const LogoComponent = () => (
-  <LogoWrapper>
+  <Logo>
     <Bold>netflix</Bold>roulette
-  </LogoWrapper>
+  </Logo>
 );
 
 export default LogoComponent;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FooterWrapper = styled.div`
+export const Footer = styled.div`
   display: flex;
   justify-content: center;
   height: 70px;

@@ -1,12 +1,12 @@
 import React from 'react';
 import LogoComponent from '../global/components/logo/logo.component';
-import { FooterWrapper } from './footer.styled';
+import { Footer } from './footer.styled';
 
 const FooterComponent = () => (
   <>
-    <FooterWrapper>
+    <Footer>
       <LogoComponent />
-    </FooterWrapper>
+    </Footer>
   </>
 );
 

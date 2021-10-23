@@ -1,22 +1,22 @@
 import React, { memo } from 'react';
-import { PosterCountWrapper } from './postersCount.styled';
+import { PosterCount } from './postersCount.styled';
 import PropTypes from 'prop-types';
 import { Bold } from '../../global/globalStyles';
 
-const PosterCount = ({ count }) => (
-  <PosterCountWrapper>
+const PosterCountComponent = ({ count }) => (
+  <PosterCount>
     <Bold>
       <span>{count}</span>
     </Bold>
     {count ? ' movies' : ' movie'} found
-  </PosterCountWrapper>
+  </PosterCount>
 );
 
-export default memo(PosterCount);
+export default memo(PosterCountComponent);
 
-PosterCount.propTypes = {
+PosterCountComponent.propTypes = {
   count: PropTypes.number.isRequired,
 };
-PosterCount.defaultProps = {
+PosterCountComponent.defaultProps = {
   count: 0,
 };

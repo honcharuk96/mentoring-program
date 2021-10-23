@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RedButtonWrapper } from './redButton.styled';
+import { RedButton } from './redButton.styled';
 
-const RedButton = ({ text, click = null, revertColor = false }) => (
+const RedButtonComponent = ({ text, click = null, revertColor = false }) => (
     <>
-      <RedButtonWrapper revertColor={revertColor} onClick={click}>
+      <RedButton revertColor={revertColor} onClick={click}>
         {text}
-      </RedButtonWrapper>
+      </RedButton>
     </>
   );
 
-export default React.memo(RedButton);
+export default React.memo(RedButtonComponent);
 
-RedButton.propTypes = {
+RedButtonComponent.propTypes = {
   text: PropTypes.string.isRequired,
   click: PropTypes.func,
   revertColor: PropTypes.bool,

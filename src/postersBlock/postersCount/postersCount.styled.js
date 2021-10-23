@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PosterCountWrapper = styled.div`
+export const PosterCount = styled.div`
   padding-top: 25px;
   color: #ffffff;
   font-size: 20px;
