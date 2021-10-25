@@ -12,6 +12,7 @@ const HeaderComponent = () => (
         <ButtonMovie />
       </TopMenu>
       <SearchForm />
+
     </Header>
   </>
 );
