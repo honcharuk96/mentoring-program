@@ -6,18 +6,21 @@ import {
   CloseBut,
   FormHeader,
   FormWrapper,
-  FormWrapper2,
+  FormWrapperGlobal,
   Input,
   InputWrapper,
   Label,
   SupText,
   TextArea,
 } from './posterForm.styled';
+import {addPoster, deletePoster, updatePoster} from '../../servise/posterService';
+import {statusForm} from '../../global/constants/global.constants';
 
 export default class PosterForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: props.id || null,
       title: props.title || '',
       date: props.date || '',
       movieUrl: props.movieUrl || '',
@@ -26,7 +29,8 @@ export default class PosterForm extends React.Component {
       selectedGenres: this.convertSelectedGenres(props.genres || []),
       runtime: props.runtime || '',
       overview: props.overview || '',
-      showAddEdit: props.showAddEdit || false,
+      showAdd: props.showAdd || false,
+      showEdit: props.showEdit || false,
       showDelete: props.showDelete || false,
     };
     this.defaultState = this.state;
@@ -41,8 +45,12 @@ export default class PosterForm extends React.Component {
     ];
   }
 
-  convertSelectedGenres = data => {
-    return data.map(el => ({ value: el, label: el }));
+  convertSelectedGenres = (data,toObj= true) => {
+    if(toObj){
+     return data.map(el => ({ value: el, label: el }));
+    } else {
+      return data.map(el => el.value);
+    }
   };
   convertGenres = data => {
     const def = [
@@ -60,7 +68,7 @@ export default class PosterForm extends React.Component {
     this.setState(this.defaultState);
   };
   closeForm = () => {
-    this.props.parentFunc();
+    this.props.changeStateModal();
   };
   onChangeField = el => {
     const { name, value } = el.target;
@@ -69,17 +77,50 @@ export default class PosterForm extends React.Component {
   handleChange = selected => {
     this.setState({ selectedGenres: selected });
   };
+
+  setHeader= () =>{
+    const {showAdd, showEdit } = this.state;
+    if(showAdd){
+      return statusForm.ADD
+    } else if(showEdit){
+      return  statusForm.UPDATE
+    }
+  }
   submitFormHandler = event => {
     const form = event.target.offsetParent;
     if (form.checkValidity()) {
-      console.log(JSON.stringify(this.state));
-    } else {
+    (async () => {
+      const { id,title,date, movieUrl,rating,runtime,overview} = this.state;
+      const poster = {
+        title,
+        vote_average: +rating,
+        release_date: date,
+        poster_path: movieUrl,
+        overview,
+        runtime: +runtime,
+        genres: this.convertSelectedGenres(this.state.selectedGenres,false),
+      };
+      try {
+        const { showAdd, showEdit, showDelete } = this.state;
+        if(showAdd){
+          await addPoster(poster);
+        }else if(showEdit){
+          await updatePoster({...poster, id});
+        } else if(showDelete){
+          await deletePoster(id);
+        }
+      } catch (err) {
+        throw new Error(err);
+      }
+      this.closeForm();
+    })();
+    }  else {
       form.reportValidity();
     }
   };
 
   render() {
-    const { showAddEdit, showDelete } = this.state;
+    const { showAdd, showEdit, showDelete } = this.state;
     const project = element => {
       switch (element.type) {
         case 'textarea':
@@ -131,21 +172,12 @@ export default class PosterForm extends React.Component {
     };
     return (
       <>
-        <FormWrapper2>
+        <FormWrapperGlobal>
           <FormWrapper>
             <CloseBut onClick={this.closeForm} />
-            {showDelete && (
+            {(showAdd || showEdit) && (
               <>
-                <FormHeader>Delete movie</FormHeader>
-                <SupText>Are you sure you want to delete this movie?</SupText>
-                <ButList>
-                  <RedButton text={'Confirm'} click={this.submitFormHandler} />
-                </ButList>
-              </>
-            )}
-            {showAddEdit && (
-              <>
-                <FormHeader>Add movie</FormHeader>
+                <FormHeader>{this.setHeader()} movie</FormHeader>
                 <InputWrapper>
                   {this.elements.map(element => {
                     return (
@@ -166,8 +198,17 @@ export default class PosterForm extends React.Component {
                 </ButList>
               </>
             )}
+            { showDelete && (
+                <>
+                  <FormHeader>Delete movie</FormHeader>
+                  <SupText>Are you sure you want to delete this movie?</SupText>
+                  <ButList>
+                    <RedButton text={'Confirm'} click={this.submitFormHandler} />
+                  </ButList>
+                </>
+            )}
           </FormWrapper>
-        </FormWrapper2>
+        </FormWrapperGlobal>
       </>
     );
   }

@@ -6,10 +6,8 @@ import PosterForm from '../postersBlock/posterForm/posterForm.component';
 import { ButtonMovie } from './addMovie/addMovie.styled';
 
 const HeaderComponent = () => {
-  const [showAddEdit, setShowAddEdit] = useState(false);
-  const changeStateModal = useCallback(() => {
-    setShowAddEdit(!showAddEdit);
-  });
+  const [showAdd, setShowForm] = useState(false);
+  const changeStateModal = useCallback(() => {setShowForm(!showAdd);});
 
   return (
     <>
@@ -17,7 +15,7 @@ const HeaderComponent = () => {
         <TopMenu>
           <LogoComponent />
           <ButtonMovie onClick={() => changeStateModal()} />
-          {showAddEdit && <PosterForm showAddEdit={showAddEdit} parentFunc={() => changeStateModal()} />}
+          {showAdd  && <PosterForm showAdd={showAdd}  changeStateModal={() => changeStateModal()} />}
         </TopMenu>
         <SearchForm />
       </Header>

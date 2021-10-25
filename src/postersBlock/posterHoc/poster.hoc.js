@@ -2,13 +2,14 @@ import React, { memo, useState } from 'react';
 import PosterForm from '../posterForm/posterForm.component';
 import PropTypes from 'prop-types';
 import { Atag, HoverPoster, Nav, Ul } from './posterHoc.styled';
+import {statusForm} from '../../global/constants/global.constants';
 
 export const withForm = Component => {
   const PosterWIthForm = ({ id, src, alt, title, date, genres, rating, runtime, overview }) => {
-    const [showAddEdit, setShowAddEdit] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
     const changeStateModal = variantModal => {
-      variantModal === 'addEdit' ? setShowAddEdit(!showAddEdit) : setShowDelete(!showDelete);
+      variantModal === statusForm.UPDATE ? setShowEdit(!showEdit) : setShowDelete(!showDelete);
     };
     return (
       <>
@@ -16,18 +17,19 @@ export const withForm = Component => {
           <Nav>
             <Atag>...</Atag>
             <Ul>
-              <li onClick={() => changeStateModal('addEdit')}>
+              <li onClick={() => changeStateModal(statusForm.UPDATE)}>
                 <Atag> Edit</Atag>
               </li>
-              <li onClick={() => changeStateModal('delete')}>
+              <li onClick={() => changeStateModal(statusForm.DELETE)}>
                 <Atag>Delete</Atag>
               </li>
             </Ul>
           </Nav>
           <Component key={id} id={id} src={src} alt={alt} title={title} date={date} genres={genres} />
         </HoverPoster>
-        {(showAddEdit || showDelete) && (
+        {(showEdit || showDelete) && (
           <PosterForm
+            id={id}
             title={title}
             date={date}
             movieUrl={src}
@@ -35,9 +37,9 @@ export const withForm = Component => {
             genres={genres}
             runtime={runtime}
             overview={overview}
-            showAddEdit={showAddEdit}
+            showEdit={showEdit}
             showDelete={showDelete}
-            parentFunc={() => (showAddEdit ? changeStateModal('addEdit') : changeStateModal('delete'))}
+            changeStateModal={() => (showEdit ? changeStateModal(statusForm.UPDATE) : changeStateModal(statusForm.DELETE))}
           />
         )}
       </>

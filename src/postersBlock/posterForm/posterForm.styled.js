@@ -65,7 +65,7 @@ export const FormWrapper = styled.form`
   padding: 30px;
   z-index: 2;
 `;
-export const FormWrapper2 = styled.div`
+export const FormWrapperGlobal = styled.div`
   position: fixed;
   top: 0;
   left: 0;
