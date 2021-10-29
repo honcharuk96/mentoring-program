@@ -11,6 +11,7 @@ export const ButtonMovie = styled.input.attrs({ type: 'button', value: '+Add mov
   line-height: 24px;
   text-align: right;
   text-transform: uppercase;
+  cursor: pointer;
   &:active {
     color: aliceblue;
   }
