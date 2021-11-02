@@ -1,16 +1,17 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import { PosterForm } from '../posterForm/posterForm.component';
 import PropTypes from 'prop-types';
 import { Atag, HoverPoster, Nav, Ul } from './posterHoc.styled';
 import { statusForm } from '../../global/constants/global.constants';
 import ReactDOM from 'react-dom';
+import {useToggle} from '../../global/hooks/useToggle';
 
 export const withForm = Component => {
   const PosterWIthForm = ({ id, src, alt, title, date, genres }) => {
-    const [showUpdate, setShowUpdate] = useState(false);
-    const [showDelete, setShowDelete] = useState(false);
+    const [showUpdate, setShowUpdate] = useToggle();
+    const [showDelete, setShowDelete] = useToggle();
     const changeStateModal = variantModal => {
-      variantModal === statusForm.UPDATE ? setShowUpdate(!showUpdate) : setShowDelete(!showDelete);
+      variantModal === statusForm.UPDATE ? setShowUpdate() : setShowDelete();
     };
     return (
       <>

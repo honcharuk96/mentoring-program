@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Header, TopMenu } from './header.styled';
 import SearchForm from './searchForm/searchForm.component';
 import LogoComponent from '../global/components/logo/logo.component';
@@ -8,14 +8,11 @@ import { AppContext } from '../App';
 import Search_Button from '../../public/images/Search_Button.png';
 import { Main } from '../global/globalStyles';
 import { PosterInfoComponent } from './posterInfo/posterInfo.component';
+import {useToggle} from '../global/hooks/useToggle';
 
 const HeaderComponent = () => {
   const { posterIdForHeader } = useContext(AppContext);
-  const [showAdd, setShowForm] = useState(false);
-  const changeStateModal = useCallback(() => {
-    setShowForm(!showAdd);
-  });
-  useEffect(() => {}, [posterIdForHeader]);
+  const [showAdd, setShowForm] = useToggle();
 
   return (
     <>
@@ -23,8 +20,8 @@ const HeaderComponent = () => {
         <Header>
           <TopMenu>
             <LogoComponent />
-            <ButtonMovie onClick={() => changeStateModal()} />
-            {showAdd && <PosterForm showAdd={showAdd} changeStateModal={() => changeStateModal()} />}
+            <ButtonMovie onClick={setShowForm} />
+            {showAdd && <PosterForm showAdd={showAdd} changeStateModal={setShowForm} />}
           </TopMenu>
           <SearchForm />
         </Header>
