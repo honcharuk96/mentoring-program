@@ -75,7 +75,6 @@ export const FormWrapperGlobal = styled.div`
   height: 100%;
   background: rgba(35, 35, 35, 0.918051);
   mix-blend-mode: normal;
-  //opacity: 0.89;
   backdrop-filter: blur(0.4645px);
   z-index: 1;
 `;
