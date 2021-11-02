@@ -1,15 +1,16 @@
 import React, { memo, useState } from 'react';
-import PosterForm from '../posterForm/posterForm.component';
+import { PosterForm } from '../posterForm/posterForm.component';
 import PropTypes from 'prop-types';
 import { Atag, HoverPoster, Nav, Ul } from './posterHoc.styled';
-import {statusForm} from '../../global/constants/global.constants';
+import { statusForm } from '../../global/constants/global.constants';
+import ReactDOM from 'react-dom';
 
 export const withForm = Component => {
-  const PosterWIthForm = ({ id, src, alt, title, date, genres, rating, runtime, overview }) => {
-    const [showEdit, setShowEdit] = useState(false);
+  const PosterWIthForm = ({ id, src, alt, title, date, genres }) => {
+    const [showUpdate, setShowUpdate] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
     const changeStateModal = variantModal => {
-      variantModal === statusForm.UPDATE ? setShowEdit(!showEdit) : setShowDelete(!showDelete);
+      variantModal === statusForm.UPDATE ? setShowUpdate(!showUpdate) : setShowDelete(!showDelete);
     };
     return (
       <>
@@ -27,21 +28,18 @@ export const withForm = Component => {
           </Nav>
           <Component key={id} id={id} src={src} alt={alt} title={title} date={date} genres={genres} />
         </HoverPoster>
-        {(showEdit || showDelete) && (
-          <PosterForm
-            id={id}
-            title={title}
-            date={date}
-            movieUrl={src}
-            rating={rating}
-            genres={genres}
-            runtime={runtime}
-            overview={overview}
-            showEdit={showEdit}
-            showDelete={showDelete}
-            changeStateModal={() => (showEdit ? changeStateModal(statusForm.UPDATE) : changeStateModal(statusForm.DELETE))}
-          />
-        )}
+        {(showUpdate || showDelete) &&
+          ReactDOM.createPortal(
+            <PosterForm
+              id={id}
+              showUpdate={showUpdate}
+              showDelete={showDelete}
+              changeStateModal={() =>
+                showUpdate ? changeStateModal(statusForm.UPDATE) : changeStateModal(statusForm.DELETE)
+              }
+            />,
+            document.body,
+          )}
       </>
     );
   };

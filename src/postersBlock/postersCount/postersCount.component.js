@@ -1,16 +1,20 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
 import { PosterCount } from './postersCount.styled';
 import PropTypes from 'prop-types';
 import { Bold } from '../../global/globalStyles';
+import { AppContext } from '../../App';
 
-const PosterCountComponent = ({ count }) => (
-  <PosterCount>
-    <Bold>
-      <span>{count}</span>
-    </Bold>
-    {count ? ' movies' : ' movie'} found
-  </PosterCount>
-);
+const PosterCountComponent = () => {
+  const { postersInfo } = useContext(AppContext);
+  return (
+    <PosterCount>
+      <Bold>
+        <span>{postersInfo.countPosters}</span>
+      </Bold>
+      {postersInfo.countPosters ? ' movies' : ' movie'} found
+    </PosterCount>
+  );
+};
 
 export default memo(PosterCountComponent);
 
