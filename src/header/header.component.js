@@ -8,7 +8,7 @@ import { AppContext } from '../App';
 import Search_Button from '../../public/images/Search_Button.png';
 import { Main } from '../global/globalStyles';
 import { PosterInfoComponent } from './posterInfo/posterInfo.component';
-import {useToggle} from '../global/hooks/useToggle';
+import { useToggle } from '../global/hooks/useToggle';
 
 const HeaderComponent = () => {
   const { posterIdForHeader } = useContext(AppContext);

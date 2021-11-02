@@ -26,6 +26,6 @@ export const PosterDeleteForm = ({ id, closeForm }) => {
 };
 
 PosterDeleteForm.propTypes = {
-    id: PropTypes.number.isRequired,
-    closeForm: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  closeForm: PropTypes.func.isRequired,
 };

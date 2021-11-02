@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../../App';
 import { addPoster } from '../../servise/posterService';
-import {convertPosterState, getDefaultPosterState, statusForm} from '../../global/constants/global.constants';
+import { convertPosterState, getDefaultPosterState, statusForm } from '../../global/constants/global.constants';
 import { ButList, FormHeader, Input, InputWrapper, Label, TextArea } from './posterForm.styled';
 import { SelectElementComponent } from './selectElement.component';
 import RedButtonComponent from '../../global/components/redButton/redButton.component';

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../App';
 import { getPosterById, updatePoster } from '../../servise/posterService';
-import {convertPosterState, getDefaultPosterState, statusForm} from '../../global/constants/global.constants';
+import { convertPosterState, getDefaultPosterState, statusForm } from '../../global/constants/global.constants';
 import { ButList, FormHeader, Input, InputWrapper, Label, TextArea } from './posterForm.styled';
 import { SelectElementComponent } from './selectElement.component';
 import RedButtonComponent from '../../global/components/redButton/redButton.component';
@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 export const PosterUpdateForm = ({ id, closeForm }) => {
   const { triggerPosterService } = useContext(AppContext);
   const [defaultPosterState, setDefaultPosterState] = useState([]);
-  const [posterDataById, setPosterDataById] = useState(()=>getDefaultPosterState(true));
+  const [posterDataById, setPosterDataById] = useState(() => getDefaultPosterState(true));
 
   useEffect(async () => {
     const { poster } = await getPosterById(id);
@@ -36,7 +36,7 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
   };
 
   const submitFormHandler = async () => {
-    const poster = convertPosterState(posterDataById,true);
+    const poster = convertPosterState(posterDataById, true);
     await updatePoster(poster);
     closeForm();
     triggerPosterService({ form: statusForm.UPDATE });

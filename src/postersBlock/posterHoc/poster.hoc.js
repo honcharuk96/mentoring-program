@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Atag, HoverPoster, Nav, Ul } from './posterHoc.styled';
 import { statusForm } from '../../global/constants/global.constants';
 import ReactDOM from 'react-dom';
-import {useToggle} from '../../global/hooks/useToggle';
+import { useToggle } from '../../global/hooks/useToggle';
 
 export const withForm = Component => {
   const PosterWIthForm = ({ id, src, alt, title, date, genres }) => {

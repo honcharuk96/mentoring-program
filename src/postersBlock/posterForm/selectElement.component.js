@@ -26,9 +26,9 @@ export const SelectElementComponent = ({ genres, selectedGenres, handleChange })
 );
 
 SelectElementComponent.propTypes = {
-    genres: PropTypes.array.isRequired,
-    selectedGenres: PropTypes.array.isRequired,
-    handleChange: PropTypes.func.isRequired,
+  genres: PropTypes.array.isRequired,
+  selectedGenres: PropTypes.array.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 const Option = props => (
@@ -40,6 +40,6 @@ const Option = props => (
 );
 
 Option.propTypes = {
-    isSelected: PropTypes.bool.isRequired,
-    value: PropTypes.string.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
 };
