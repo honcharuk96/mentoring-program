@@ -7,7 +7,7 @@ import { AppContext } from '../App';
 const PosterComponent = ({ id, src, alt, title, date, genres }) => {
   const { posterIdForHeader } = useContext(AppContext);
   return (
-    <Poster key={id} id={id} onClick={() => posterIdForHeader.setSelectedPosterId(id)}>
+    <Poster key={id} id={id} onClick={() => posterIdForHeader.setSelectedPoster(id)}>
       <Img src={src} alt={alt} />
       <PosterInfo>
         <PosterTitle>{title}</PosterTitle>

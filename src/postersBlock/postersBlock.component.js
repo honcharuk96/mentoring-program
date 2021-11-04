@@ -4,7 +4,7 @@ import { Main } from '../global/globalStyles';
 import NavigationCategory from './navigationCategory/navigationCategory.component';
 import ListPosters from './listPosters.component';
 
-const PostersBlock = () => (
+const PostersArea = () => (
   <>
     <Main>
       <NavigationCategory />
@@ -13,4 +13,4 @@ const PostersBlock = () => (
     </Main>
   </>
 );
-export default PostersBlock;
+export default PostersArea;

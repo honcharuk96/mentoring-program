@@ -7,11 +7,11 @@ import RedButtonComponent from '../../global/components/redButton/redButton.comp
 import PropTypes from 'prop-types';
 
 export const PosterDeleteForm = ({ id, closeForm }) => {
-  const { triggerPosterService } = useContext(AppContext);
+  const { setSubmitForm } = useContext(AppContext);
   const submitFormHandler = async () => {
     await deletePoster(id);
     closeForm();
-    triggerPosterService({ form: statusForm.DELETE });
+      setSubmitForm({ form: statusForm.DELETE });
   };
 
   return (

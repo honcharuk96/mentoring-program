@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import { AppContext } from '../../App';
 import { getPosterById, updatePoster } from '../../servise/posterService';
 import { convertPosterState, getDefaultPosterState, statusForm } from '../../global/constants/global.constants';
@@ -9,7 +9,7 @@ import { convertGenres, convertSelectedGenres } from './formHelper';
 import PropTypes from 'prop-types';
 
 export const PosterUpdateForm = ({ id, closeForm }) => {
-  const { triggerPosterService } = useContext(AppContext);
+  const { setSubmitForm } = useContext(AppContext);
   const [defaultPosterState, setDefaultPosterState] = useState([]);
   const [posterDataById, setPosterDataById] = useState(() => getDefaultPosterState(true));
 
@@ -24,9 +24,10 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
     setPosterDataById(transformPoster);
   }, []);
 
-  const resetForm = () => {
+  const resetForm = useCallback(() => {
     setPosterDataById(defaultPosterState);
-  };
+  },[defaultPosterState]);
+
   const onChangeField = el => {
     const { name, value } = el.target;
     setPosterDataById({ ...posterDataById, [name]: value });
@@ -39,14 +40,14 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
     const poster = convertPosterState(posterDataById, true);
     await updatePoster(poster);
     closeForm();
-    triggerPosterService({ form: statusForm.UPDATE });
+    setSubmitForm({ form: statusForm.UPDATE });
   };
   return (
     <>
       <FormHeader>Update movie</FormHeader>
       <InputWrapper>
         <Label key={'title'}>
-          {'title'}
+          title
           <Input
             required
             pattern={'.{3,}'}
@@ -57,7 +58,7 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
           />
         </Label>
         <Label key={'release_date'}>
-          {'date'}
+          date
           <Input
             required={true}
             pattern={'.{3,}'}
@@ -68,7 +69,7 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
           />
         </Label>
         <Label key={'poster_path'}>
-          {'movie url'}
+          movie url
           <Input
             required
             pattern={'https://.*'}
@@ -79,7 +80,7 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
           />
         </Label>
         <Label key={'vote_average'}>
-          {'rating'}
+          rating
           <Input
             required
             step={'.01'}
@@ -97,7 +98,7 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
           handleChange={handleChange}
         />
         <Label key={'runtime'}>
-          {'runtime'}
+          runtime
           <Input
             required
             min={0}
@@ -108,7 +109,7 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
           />
         </Label>
         <Label key={'overview'} fullWidth>
-          {'overview'}
+          overview
           <TextArea name={'overview'} value={posterDataById.overview} onChange={onChangeField}>
             {posterDataById.overview}
           </TextArea>

@@ -3,7 +3,7 @@ import { hot } from 'react-hot-loader';
 import HeaderComponent from './header/header.component';
 import GlobalStyles from './global/globalStyles';
 import FooterComponent from './footer/footer.component';
-import PostersBlock from './postersBlock/postersBlock.component';
+import PostersArea from './postersBlock/postersBlock.component';
 import ErrorBoundary from './global/components/errorComponent/errorBoundary.component';
 import { getPosters, getPostersByCategory } from './servise/posterService';
 import { BigLine } from './global/components/bigLine/bigLine.styled';
@@ -25,14 +25,16 @@ const App = () => {
   const [activeNav, setActiveNav] = useState(() => links[0]);
 
   useEffect(async () => {
-    const { count, posters } = activeNav === links[0] ? await getPosters() : await getPostersByCategory(activeNav.text);
-    setPosters(posters);
-    setCountPosters(count);
+    let data;
+    if( activeNav === links[0]) {
+      data = await getPosters()
+    } else {
+      data = await getPostersByCategory(activeNav.text);
+    }
+
+    setPosters(data.posters);
+    setCountPosters(data.count);
   }, [activeNav, submitForm]);
-
-  const triggerPosterService = serviceName => setSubmitForm(serviceName);
-
-  const setSelectedPosterId = posterId => setSelectedPoster(posterId);
 
   return (
     <>
@@ -44,14 +46,14 @@ const App = () => {
             nav: { links, setActiveNav, activeNav },
             posterIdForHeader: {
               selectedPoster,
-              setSelectedPosterId,
+              setSelectedPoster,
             },
-            triggerPosterService,
+            setSubmitForm,
           }}
         >
           <HeaderComponent />
           <BigLine />
-          <PostersBlock />
+          <PostersArea />
         </AppContext.Provider>
         <FooterComponent />
       </ErrorBoundary>

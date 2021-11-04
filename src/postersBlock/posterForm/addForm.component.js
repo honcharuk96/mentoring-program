@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 import { AppContext } from '../../App';
 import { addPoster } from '../../servise/posterService';
 import { convertPosterState, getDefaultPosterState, statusForm } from '../../global/constants/global.constants';
@@ -8,12 +8,12 @@ import RedButtonComponent from '../../global/components/redButton/redButton.comp
 import PropTypes from 'prop-types';
 
 export const PosterAddForm = ({ closeForm }) => {
-  const { triggerPosterService } = useContext(AppContext);
+  const { setSubmitForm } = useContext(AppContext);
   const [posterFormData, setPosterFormData] = useState(() => getDefaultPosterState());
 
-  const resetForm = () => {
+  const resetForm = useCallback(() => {
     setPosterFormData(getDefaultPosterState);
-  };
+  },[]);
 
   const onChangeField = el => {
     const { name, value } = el.target;
@@ -27,7 +27,7 @@ export const PosterAddForm = ({ closeForm }) => {
     const poster = convertPosterState(posterFormData);
     await addPoster(poster);
     closeForm();
-    triggerPosterService({ form: statusForm.ADD });
+    setSubmitForm({ form: statusForm.ADD });
   };
 
   return (
@@ -35,7 +35,7 @@ export const PosterAddForm = ({ closeForm }) => {
       <FormHeader>Add movie</FormHeader>
       <InputWrapper>
         <Label key={'title'}>
-          {'title'}
+          title
           <Input
             required
             pattern={'.{3,}'}
@@ -46,7 +46,7 @@ export const PosterAddForm = ({ closeForm }) => {
           />
         </Label>
         <Label key={'release_date'}>
-          {'date'}
+          date
           <Input
             required={true}
             pattern={'.{3,}'}
@@ -57,7 +57,7 @@ export const PosterAddForm = ({ closeForm }) => {
           />
         </Label>
         <Label key={'poster_path'}>
-          {'movie url'}
+          movie url
           <Input
             required
             pattern={'https://.*'}
@@ -68,7 +68,7 @@ export const PosterAddForm = ({ closeForm }) => {
           />
         </Label>
         <Label key={'vote_average'}>
-          {'rating'}
+          rating
           <Input
             required
             step={'.01'}
@@ -86,7 +86,7 @@ export const PosterAddForm = ({ closeForm }) => {
           handleChange={handleChange}
         />
         <Label key={'runtime'}>
-          {'runtime'}
+          runtime
           <Input
             required={true}
             min={0}
@@ -97,7 +97,7 @@ export const PosterAddForm = ({ closeForm }) => {
           />
         </Label>
         <Label key={'overview'} fullWidth>
-          {'overview'}
+          overview
           <TextArea name={'overview'} value={posterFormData.overview} onChange={onChangeField}>
             {posterFormData.overview}
           </TextArea>

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Header, TopMenu } from './header.styled';
+import {Header, SelectedImg, TopMenu} from './header.styled';
 import SearchForm from './searchForm/searchForm.component';
 import LogoComponent from '../global/components/logo/logo.component';
 import { PosterForm } from '../postersBlock/posterForm/posterForm.component';
@@ -16,7 +16,7 @@ const HeaderComponent = () => {
 
   return (
     <>
-      {posterIdForHeader.selectedPoster === false ? (
+      {!posterIdForHeader.selectedPoster ? (
         <Header>
           <TopMenu>
             <LogoComponent />
@@ -26,20 +26,17 @@ const HeaderComponent = () => {
           <SearchForm />
         </Header>
       ) : (
-        <>
           <Main>
-            <TopMenu style={{ padding: '30px 0' }}>
+            <TopMenu  isPosterSelected >
               <LogoComponent />
-              <img
+              <SelectedImg
                 src={Search_Button}
                 alt={'close'}
-                onClick={() => posterIdForHeader.setSelectedPosterId(false)}
-                style={{ cursor: 'pointer' }}
+                onClick={() => posterIdForHeader.setSelectedPoster(false)}
               />
             </TopMenu>
             <PosterInfoComponent posterId={posterIdForHeader.selectedPoster} />
           </Main>
-        </>
       )}
     </>
   );
