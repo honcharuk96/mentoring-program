@@ -18,22 +18,27 @@ const links = [
 
 export const AppContext = createContext(null);
 const App = () => {
-  const [posters, setPosters] = useState([]);
-  const [countPosters, setCountPosters] = useState(0);
-  const [selectedPoster, setSelectedPoster] = useState(false);
+  const [listOfPosters, setListOfPosters] = useState([]);
+  const [numberOfPosters, setNumberOfPosters] = useState(0);
+  const [selectedPoster, setSelectedPoster] = useState(null);
   const [submitForm, setSubmitForm] = useState({ form: null });
   const [activeNav, setActiveNav] = useState(() => links[0]);
 
-  useEffect(async () => {
-    let data;
-    if( activeNav === links[0]) {
-      data = await getPosters()
-    } else {
-      data = await getPostersByCategory(activeNav.text);
-    }
+  useEffect( () => {
 
-    setPosters(data.posters);
-    setCountPosters(data.count);
+    async function getListOfPosters() {
+      let data;
+      if( activeNav === links[0]) {
+        data = await getPosters()
+      } else {
+        data = await getPostersByCategory(activeNav.text);
+      }
+
+      setListOfPosters(data.posters);
+      setNumberOfPosters(data.count);
+
+    }
+    getListOfPosters();
   }, [activeNav, submitForm]);
 
   return (
@@ -42,7 +47,7 @@ const App = () => {
         <GlobalStyles />
         <AppContext.Provider
           value={{
-            postersInfo: { posters, countPosters },
+            infoAboutGlobalListOfPosters: { listOfPosters, numberOfPosters },
             nav: { links, setActiveNav, activeNav },
             posterIdForHeader: {
               selectedPoster,

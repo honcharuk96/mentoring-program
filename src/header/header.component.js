@@ -32,7 +32,7 @@ const HeaderComponent = () => {
               <SelectedImg
                 src={Search_Button}
                 alt={'close'}
-                onClick={() => posterIdForHeader.setSelectedPoster(false)}
+                onClick={() => posterIdForHeader.setSelectedPoster(null)}
               />
             </TopMenu>
             <PosterInfoComponent posterId={posterIdForHeader.selectedPoster} />
@@ -42,4 +42,4 @@ const HeaderComponent = () => {
   );
 };
 
-export default HeaderComponent;
+export default React.memo(HeaderComponent);

@@ -5,13 +5,13 @@ import { Bold } from '../../global/globalStyles';
 import { AppContext } from '../../App';
 
 const PosterCountComponent = () => {
-  const { postersInfo } = useContext(AppContext);
+  const { infoAboutGlobalListOfPosters } = useContext(AppContext);
   return (
     <PosterCount>
       <Bold>
-        <span>{postersInfo.countPosters}</span>
+        <span>{infoAboutGlobalListOfPosters.numberOfPosters}</span>
       </Bold>
-      {postersInfo.countPosters ? ' movies' : ' movie'} found
+      {infoAboutGlobalListOfPosters.numberOfPosters ? ' movies' : ' movie'} found
     </PosterCount>
   );
 };

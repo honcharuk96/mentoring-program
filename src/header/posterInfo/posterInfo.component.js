@@ -16,7 +16,7 @@ import {
 } from './posterInfo.styled';
 
 export const PosterInfoComponent = posterId => {
-  const [poster2, setPoster] = useState({
+  const [poster, setPoster] = useState({
     title: '',
     release_date: '',
     poster_path: '',
@@ -25,28 +25,31 @@ export const PosterInfoComponent = posterId => {
     runtime: '',
     overview: '',
   });
-  useEffect(async () => {
-    const { poster } = await getPosterById(posterId.posterId);
-    setPoster(poster);
+  useEffect( () => {
+    async function getPoster(){
+      const { poster } = await getPosterById(posterId.posterId);
+      setPoster(poster);
+    }
+    getPoster();
   }, [posterId]);
 
   return (
     <>
       <PosterDetail>
         <PosterDetailRightBlock>
-          <Img src={poster2.poster_path} alt={poster2.title} />
+          <Img src={poster.poster_path} alt={poster.title} />
         </PosterDetailRightBlock>
         <PosterDetailLeftBlock>
           <PosterDetailHeader>
-            <PosterDetailTitle>{poster2.title}</PosterDetailTitle>
-            <PosterDetailVoteAverage>{poster2.vote_average}</PosterDetailVoteAverage>
+            <PosterDetailTitle>{poster.title}</PosterDetailTitle>
+            <PosterDetailVoteAverage>{poster.vote_average}</PosterDetailVoteAverage>
           </PosterDetailHeader>
-          <PosterCategoryComponent genres={poster2.genres} />
+          <PosterCategoryComponent genres={poster.genres} />
           <PosterDetailTimes>
-            <PosterDetailDate>{poster2.release_date.slice(0, 4)}</PosterDetailDate>
-            <PosterDetailDate>{convertMinsToHrsMins(poster2.runtime)}</PosterDetailDate>
+            <PosterDetailDate>{poster.release_date.slice(0, 4)}</PosterDetailDate>
+            <PosterDetailDate>{convertMinsToHrsMins(poster.runtime)}</PosterDetailDate>
           </PosterDetailTimes>
-          <PosterDetailOverview>{poster2.overview}</PosterDetailOverview>
+          <PosterDetailOverview>{poster.overview}</PosterDetailOverview>
         </PosterDetailLeftBlock>
       </PosterDetail>
     </>

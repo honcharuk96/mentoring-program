@@ -13,15 +13,18 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
   const [defaultPosterState, setDefaultPosterState] = useState([]);
   const [posterDataById, setPosterDataById] = useState(() => getDefaultPosterState(true));
 
-  useEffect(async () => {
-    const { poster } = await getPosterById(id);
-    const transformPoster = {
-      ...poster,
-      genres: convertGenres(poster.genres),
-      selectedGenres: convertSelectedGenres(poster.genres),
-    };
-    setDefaultPosterState(transformPoster);
-    setPosterDataById(transformPoster);
+  useEffect( () => {
+    async function getPoster() {
+      const { poster } = await getPosterById(id);
+      const transformPoster = {
+        ...poster,
+        genres: convertGenres(poster.genres),
+        selectedGenres: convertSelectedGenres(poster.genres),
+      };
+      setDefaultPosterState(transformPoster);
+      setPosterDataById(transformPoster);
+    }
+    getPoster();
   }, []);
 
   const resetForm = useCallback(() => {

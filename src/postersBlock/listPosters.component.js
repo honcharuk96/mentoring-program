@@ -6,10 +6,10 @@ import PosterComponent from './poster.component';
 import { AppContext } from '../App';
 
 const ListPosters = () => {
-  const { postersInfo } = useContext(AppContext);
+  const { infoAboutGlobalListOfPosters } = useContext(AppContext);
   return (
     <Posters>
-      {postersInfo.posters.map(poster => (
+      {infoAboutGlobalListOfPosters.listOfPosters.map(poster => (
         <PosterWithForm
           key={poster.id}
           id={poster.id}
@@ -46,10 +46,6 @@ ListPosters.propTypes = {
       vote_count: PropTypes.number,
     }),
   ),
-};
-
-ListPosters.defaultProps = {
-  posters: [],
 };
 
 const PosterWithForm = withForm(PosterComponent);
