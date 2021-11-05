@@ -1,15 +1,17 @@
-import React, { memo, useState } from 'react';
-import PosterForm from '../posterForm/posterForm.component';
+import React, {lazy, memo, Suspense} from 'react';
 import PropTypes from 'prop-types';
 import { Atag, HoverPoster, Nav, Ul } from './posterHoc.styled';
-import {statusForm} from '../../global/constants/global.constants';
+import { statusForm } from '../../global/constants/global.constants';
+import ReactDOM from 'react-dom';
+import { useToggle } from '../../global/hooks/useToggle';
 
+const PosterForm = lazy(() => import('../posterForm/posterForm.component'));
 export const withForm = Component => {
-  const PosterWIthForm = ({ id, src, alt, title, date, genres, rating, runtime, overview }) => {
-    const [showEdit, setShowEdit] = useState(false);
-    const [showDelete, setShowDelete] = useState(false);
+  const PosterWIthForm = ({ id, src, alt, title, date, genres }) => {
+    const [showUpdate, setShowUpdate] = useToggle();
+    const [showDelete, setShowDelete] = useToggle();
     const changeStateModal = variantModal => {
-      variantModal === statusForm.UPDATE ? setShowEdit(!showEdit) : setShowDelete(!showDelete);
+      variantModal === statusForm.UPDATE ? setShowUpdate() : setShowDelete();
     };
     return (
       <>
@@ -27,21 +29,20 @@ export const withForm = Component => {
           </Nav>
           <Component key={id} id={id} src={src} alt={alt} title={title} date={date} genres={genres} />
         </HoverPoster>
-        {(showEdit || showDelete) && (
-          <PosterForm
-            id={id}
-            title={title}
-            date={date}
-            movieUrl={src}
-            rating={rating}
-            genres={genres}
-            runtime={runtime}
-            overview={overview}
-            showEdit={showEdit}
-            showDelete={showDelete}
-            changeStateModal={() => (showEdit ? changeStateModal(statusForm.UPDATE) : changeStateModal(statusForm.DELETE))}
-          />
-        )}
+        {(showUpdate || showDelete) &&
+          ReactDOM.createPortal(
+            <Suspense fallback={<div>Loading...</div>}>
+              <PosterForm
+                id={id}
+                showUpdate={showUpdate}
+                showDelete={showDelete}
+                changeStateModal={() =>
+                  showUpdate ? changeStateModal(statusForm.UPDATE) : changeStateModal(statusForm.DELETE)
+                }
+              />
+            </Suspense>,
+            document.body,
+          )}
       </>
     );
   };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Inputs, SearchInput, Search, Text } from './searchForm.styled';
 import RedButton from '../../global/components/redButton/redButton.component';
 
@@ -14,4 +14,4 @@ const SearchForm = () => (
   </>
 );
 
-export default SearchForm;
+export default memo(SearchForm);
