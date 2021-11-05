@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import LogoComponent from '../global/components/logo/logo.component';
 import { Footer } from './footer.styled';
 
@@ -10,4 +10,4 @@ const FooterComponent = () => (
   </>
 );
 
-export default FooterComponent;
+export default memo(FooterComponent);

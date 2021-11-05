@@ -22,10 +22,6 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html, body {
-    height: 100%;
-  }
-
 
   body {
     padding: 0;
@@ -40,10 +36,22 @@ const GlobalStyles = createGlobalStyle`
     overflow-x: hidden;
     overflow-y: auto;
   }
-
-  #root {
-    width: 100%;
-    height: 100%;
+  #reactSelect [class*="-control"]{
+    background: rgba(50,50,50,0.948044);
+    height: 57px;
+    border: 0;
+    margin-top: 5px;
+  }
+  #reactSelect [class*="-menu"]{
+    background: rgba(50,50,50,0.948044);
+    z-index: 5;
+  }
+  #reactSelect [class*="-Input"]{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    color: #ffffff;
   }
 `;
 

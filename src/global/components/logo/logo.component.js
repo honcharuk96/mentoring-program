@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Logo } from './logo.styled';
 import { Bold } from '../../globalStyles';
 
@@ -8,4 +8,4 @@ const LogoComponent = () => (
   </Logo>
 );
 
-export default LogoComponent;
+export default memo(LogoComponent);

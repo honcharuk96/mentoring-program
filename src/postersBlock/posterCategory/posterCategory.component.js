@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
 import { PosterCategory } from './posterCategory.styled';
 import PropTypes from 'prop-types';
 
