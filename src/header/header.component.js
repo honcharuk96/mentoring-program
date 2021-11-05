@@ -10,6 +10,7 @@ import { PosterInfoComponent } from './posterInfo/posterInfo.component';
 import { useToggle } from '../global/hooks/useToggle';
 import { LazyImage } from '../global/components/lazyImage/lazyImage.compoent';
 import headerImg from '../../public/images/Header.png';
+import ReactDOM from 'react-dom';
 
 const PosterForm = React.lazy(() => import('../postersBlock/posterForm/posterForm.component'));
 const HeaderComponent = () => {
@@ -24,10 +25,12 @@ const HeaderComponent = () => {
           <TopMenu>
             <LogoComponent />
             <ButtonMovie onClick={setShowForm} />
-            {showAdd && (
+            {showAdd &&
+                ReactDOM.createPortal(
               <Suspense fallback={<div>Loading...</div>}>
                 <PosterForm showAdd={showAdd} changeStateModal={setShowForm} />
-              </Suspense>
+              </Suspense>,
+              document.body,
             )}
           </TopMenu>
           <SearchForm />
