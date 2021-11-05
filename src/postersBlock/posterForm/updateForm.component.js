@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../App';
 import { getPosterById, updatePoster } from '../../servise/posterService';
 import { convertPosterState, getDefaultPosterState, statusForm } from '../../global/constants/global.constants';
@@ -13,7 +13,7 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
   const [defaultPosterState, setDefaultPosterState] = useState([]);
   const [posterDataById, setPosterDataById] = useState(() => getDefaultPosterState(true));
 
-  useEffect( () => {
+  useEffect(() => {
     async function getPoster() {
       const { poster } = await getPosterById(id);
       const transformPoster = {
@@ -29,7 +29,7 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
 
   const resetForm = useCallback(() => {
     setPosterDataById(defaultPosterState);
-  },[defaultPosterState]);
+  }, [defaultPosterState]);
 
   const onChangeField = el => {
     const { name, value } = el.target;

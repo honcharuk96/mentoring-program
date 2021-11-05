@@ -1,14 +1,15 @@
 import React, { memo, useContext } from 'react';
-import { Date, Img, Poster, PosterInfo, PosterTitle } from './postersBlock.styled';
+import { Date, Poster, PosterInfo, PosterTitle } from './postersBlock.styled';
 import PropTypes from 'prop-types';
 import PosterCategoryComponent from './posterCategory/posterCategory.component';
 import { AppContext } from '../App';
+import { LazyImage } from '../global/components/lazyImage/lazyImage.compoent';
 
 const PosterComponent = ({ id, src, alt, title, date, genres }) => {
   const { posterIdForHeader } = useContext(AppContext);
   return (
     <Poster key={id} id={id} onClick={() => posterIdForHeader.setSelectedPoster(id)}>
-      <Img src={src} alt={alt} />
+      <LazyImage key={id} src={src} alt={alt} />
       <PosterInfo>
         <PosterTitle>{title}</PosterTitle>
         <Date>{date.slice(0, 4)}</Date>

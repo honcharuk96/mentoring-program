@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { RedButton } from './redButton.styled';
 
-const RedButtonComponent = ({ text, click , revertColor }) => (
+const RedButtonComponent = ({ text, click, revertColor }) => (
   <>
     <RedButton revertColor={revertColor} onClick={click}>
       {text}
@@ -19,6 +19,6 @@ RedButtonComponent.propTypes = {
 };
 
 RedButtonComponent.defaultProps = {
-    click:null,
-    revertColor: false,
-}
+  click: null,
+  revertColor: false,
+};

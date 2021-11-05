@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useState} from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { AppContext } from '../../App';
 import { addPoster } from '../../servise/posterService';
 import { convertPosterState, getDefaultPosterState, statusForm } from '../../global/constants/global.constants';
@@ -13,7 +13,7 @@ export const PosterAddForm = ({ closeForm }) => {
 
   const resetForm = useCallback(() => {
     setPosterFormData(getDefaultPosterState);
-  },[]);
+  }, []);
 
   const onChangeField = el => {
     const { name, value } = el.target;

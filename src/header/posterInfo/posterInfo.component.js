@@ -25,8 +25,8 @@ export const PosterInfoComponent = posterId => {
     runtime: '',
     overview: '',
   });
-  useEffect( () => {
-    async function getPoster(){
+  useEffect(() => {
+    async function getPoster() {
       const { poster } = await getPosterById(posterId.posterId);
       setPoster(poster);
     }
@@ -37,7 +37,7 @@ export const PosterInfoComponent = posterId => {
     <>
       <PosterDetail>
         <PosterDetailRightBlock>
-          <Img src={poster.poster_path} alt={poster.title} />
+          <Img src={poster.poster_path} alt={poster.title} loading={'lazy'} />
         </PosterDetailRightBlock>
         <PosterDetailLeftBlock>
           <PosterDetailHeader>

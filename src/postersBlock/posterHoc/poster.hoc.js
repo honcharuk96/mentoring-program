@@ -1,11 +1,11 @@
-import React, { memo } from 'react';
-import { PosterForm } from '../posterForm/posterForm.component';
+import React, {lazy, memo, Suspense} from 'react';
 import PropTypes from 'prop-types';
 import { Atag, HoverPoster, Nav, Ul } from './posterHoc.styled';
 import { statusForm } from '../../global/constants/global.constants';
 import ReactDOM from 'react-dom';
 import { useToggle } from '../../global/hooks/useToggle';
 
+const PosterForm = lazy(() => import('../posterForm/posterForm.component'));
 export const withForm = Component => {
   const PosterWIthForm = ({ id, src, alt, title, date, genres }) => {
     const [showUpdate, setShowUpdate] = useToggle();
@@ -31,14 +31,16 @@ export const withForm = Component => {
         </HoverPoster>
         {(showUpdate || showDelete) &&
           ReactDOM.createPortal(
-            <PosterForm
-              id={id}
-              showUpdate={showUpdate}
-              showDelete={showDelete}
-              changeStateModal={() =>
-                showUpdate ? changeStateModal(statusForm.UPDATE) : changeStateModal(statusForm.DELETE)
-              }
-            />,
+            <Suspense fallback={<div>Loading...</div>}>
+              <PosterForm
+                id={id}
+                showUpdate={showUpdate}
+                showDelete={showDelete}
+                changeStateModal={() =>
+                  showUpdate ? changeStateModal(statusForm.UPDATE) : changeStateModal(statusForm.DELETE)
+                }
+              />
+            </Suspense>,
             document.body,
           )}
       </>

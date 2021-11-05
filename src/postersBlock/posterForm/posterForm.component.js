@@ -4,8 +4,7 @@ import { PosterAddForm } from './addForm.component';
 import { PosterUpdateForm } from './updateForm.component';
 import { PosterDeleteForm } from './deleteForm.component';
 import PropTypes from 'prop-types';
-
-export const PosterForm = ({ id, showAdd, showUpdate, showDelete, changeStateModal }) => (
+const PosterForm = ({ id, showAdd, showUpdate, showDelete, changeStateModal }) => (
   <>
     <FormWrapperGlobal>
       <FormWrapper>
@@ -17,6 +16,7 @@ export const PosterForm = ({ id, showAdd, showUpdate, showDelete, changeStateMod
     </FormWrapperGlobal>
   </>
 );
+export default PosterForm;
 
 PosterForm.defaultProps = {
   id: null,

@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import headerImg from '../../public/images/Header.png';
+
 export const Header = styled.div`
   height: 400px;
-  background-image: url(${headerImg});
   padding: 50px;
-  background-size: cover;
+  position: relative;
 `;
 
 export const TopMenu = styled.div`

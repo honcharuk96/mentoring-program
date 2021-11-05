@@ -11,7 +11,7 @@ export const PosterDeleteForm = ({ id, closeForm }) => {
   const submitFormHandler = async () => {
     await deletePoster(id);
     closeForm();
-      setSubmitForm({ form: statusForm.DELETE });
+    setSubmitForm({ form: statusForm.DELETE });
   };
 
   return (

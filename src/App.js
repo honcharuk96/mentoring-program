@@ -7,14 +7,7 @@ import PostersArea from './postersBlock/postersBlock.component';
 import ErrorBoundary from './global/components/errorComponent/errorBoundary.component';
 import { getPosters, getPostersByCategory } from './servise/posterService';
 import { BigLine } from './global/components/bigLine/bigLine.styled';
-
-const links = [
-  { id: 0, text: 'all' },
-  { id: 1, text: 'documentary' },
-  { id: 2, text: 'comedy' },
-  { id: 3, text: 'horror' },
-  { id: 4, text: 'crime' },
-];
+import { links } from './global/constants/global.constants';
 
 export const AppContext = createContext(null);
 const App = () => {
@@ -24,19 +17,17 @@ const App = () => {
   const [submitForm, setSubmitForm] = useState({ form: null });
   const [activeNav, setActiveNav] = useState(() => links[0]);
 
-  useEffect( () => {
-
+  useEffect(() => {
     async function getListOfPosters() {
       let data;
-      if( activeNav === links[0]) {
-        data = await getPosters()
+      if (activeNav === links[0]) {
+        data = await getPosters();
       } else {
         data = await getPostersByCategory(activeNav.text);
       }
 
       setListOfPosters(data.posters);
       setNumberOfPosters(data.count);
-
     }
     getListOfPosters();
   }, [activeNav, submitForm]);

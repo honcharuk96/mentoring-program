@@ -1,5 +1,13 @@
 import { convertGenres, convertSelectedGenres } from '../../postersBlock/posterForm/formHelper';
 
+export const links = [
+  { id: 0, text: 'all' },
+  { id: 1, text: 'documentary' },
+  { id: 2, text: 'comedy' },
+  { id: 3, text: 'horror' },
+  { id: 4, text: 'crime' },
+];
+
 export const statusForm = {
   ADD: 'ADD',
   UPDATE: 'UPDATE',
