@@ -1,36 +1,32 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Posters } from './postersBlock.styled';
 import PropTypes from 'prop-types';
 import { withForm } from './posterHoc/poster.hoc';
-import PosterComponent from './poster.component';
-import { AppContext } from '../App';
+import PosterComponent from './poster.connector';
 
-const ListPosters = () => {
-  const { infoAboutGlobalListOfPosters } = useContext(AppContext);
-  return (
-    <Posters>
-      {infoAboutGlobalListOfPosters.listOfPosters.map(poster => (
-        <PosterWithForm
-          key={poster.id}
-          id={poster.id}
-          src={poster.poster_path}
-          alt={poster.title}
-          title={poster.title}
-          date={poster.release_date}
-          genres={poster.genres}
-          rating={poster.vote_average}
-          runtime={poster.runtime}
-          overview={poster.overview}
-        />
-      ))}
-    </Posters>
-  );
-};
+const ListPosters = ({ listOfPosters }) => (
+  <Posters>
+    {listOfPosters.map(poster => (
+      <PosterWithForm
+        key={poster.id}
+        id={poster.id}
+        src={poster.poster_path}
+        alt={poster.title}
+        title={poster.title}
+        date={poster.release_date}
+        genres={poster.genres}
+        rating={poster.vote_average}
+        runtime={poster.runtime}
+        overview={poster.overview}
+      />
+    ))}
+  </Posters>
+);
 
 export default ListPosters;
 
 ListPosters.propTypes = {
-  posters: PropTypes.arrayOf(
+  listOfPosters: PropTypes.arrayOf(
     PropTypes.shape({
       budget: PropTypes.number,
       genres: PropTypes.arrayOf(PropTypes.string),

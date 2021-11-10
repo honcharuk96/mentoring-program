@@ -1,35 +1,25 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { hot } from 'react-hot-loader';
-import HeaderComponent from './header/header.component';
+import HeaderComponent from './header/header.connector';
 import GlobalStyles from './global/globalStyles';
 import FooterComponent from './footer/footer.component';
 import PostersArea from './postersBlock/postersBlock.component';
 import ErrorBoundary from './global/components/errorComponent/errorBoundary.component';
-import { getPosters, getPostersByCategory } from './servise/posterService';
 import { BigLine } from './global/components/bigLine/bigLine.styled';
 import { links } from './global/constants/global.constants';
+import PropTypes from 'prop-types';
 
 export const AppContext = createContext(null);
-const App = () => {
-  const [listOfPosters, setListOfPosters] = useState([]);
-  const [numberOfPosters, setNumberOfPosters] = useState(0);
-  const [selectedPoster, setSelectedPoster] = useState(null);
+const App = ({ getPostersByCategory, getPosters }) => {
   const [submitForm, setSubmitForm] = useState({ form: null });
   const [activeNav, setActiveNav] = useState(() => links[0]);
 
   useEffect(() => {
-    async function getListOfPosters() {
-      let data;
-      if (activeNav === links[0]) {
-        data = await getPosters();
-      } else {
-        data = await getPostersByCategory(activeNav.text);
-      }
-
-      setListOfPosters(data.posters);
-      setNumberOfPosters(data.count);
+    if (activeNav === links[0]) {
+      getPosters();
+    } else {
+      getPostersByCategory(activeNav.text);
     }
-    getListOfPosters();
   }, [activeNav, submitForm]);
 
   return (
@@ -38,12 +28,7 @@ const App = () => {
         <GlobalStyles />
         <AppContext.Provider
           value={{
-            infoAboutGlobalListOfPosters: { listOfPosters, numberOfPosters },
             nav: { links, setActiveNav, activeNav },
-            posterIdForHeader: {
-              selectedPoster,
-              setSelectedPoster,
-            },
             setSubmitForm,
           }}
         >
@@ -58,3 +43,8 @@ const App = () => {
 };
 
 export default hot(module)(App);
+
+App.propTypes = {
+  getPosters: PropTypes.func.isRequired,
+  getPostersByCategory: PropTypes.func.isRequired,
+};

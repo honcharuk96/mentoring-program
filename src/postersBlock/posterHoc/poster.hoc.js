@@ -1,4 +1,4 @@
-import React, {lazy, memo, Suspense} from 'react';
+import React, { lazy, memo, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { Atag, HoverPoster, Nav, Ul } from './posterHoc.styled';
 import { statusForm } from '../../global/constants/global.constants';
