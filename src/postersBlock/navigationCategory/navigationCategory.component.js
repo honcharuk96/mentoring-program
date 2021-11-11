@@ -1,18 +1,17 @@
-import React, {memo, useContext, useState} from 'react';
+import React, {memo, useState} from 'react';
 import { Line } from '../../global/globalStyles';
 import { NavigationItem, NavigationList } from './navigationCategory.styled';
-import { AppContext } from '../../App';
+import { links } from '../../global/constants/global.constants';
 
-const NavigationCategory = () => {
-  const { nav } = useContext(AppContext);
+const NavigationCategory = ({activeNav, changeActiveNav}) => {
   return (
     <>
       <NavigationList>
-        {nav.links.map((link, index) => (
+        {links.map((link) => (
           <NavigationItem
             key={`${link.text}_${link.id}`}
-            onClick={() => nav.setActiveNav(link)}
-            selected={nav.activeNav && nav.activeNav.id === index}
+            onClick={() => changeActiveNav(link.text)}
+            selected={link.text === activeNav}
           >
             {link.text}
           </NavigationItem>

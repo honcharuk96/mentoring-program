@@ -10,12 +10,14 @@ import { links } from './global/constants/global.constants';
 import PropTypes from 'prop-types';
 
 export const AppContext = createContext(null);
-const App = ({ getPostersByCategory, getPosters }) => {
+const App = ({ getPostersByCategory, getPosters, activeNav}) => {
   const [submitForm, setSubmitForm] = useState({ form: null });
-  const [activeNav, setActiveNav] = useState(() => links[0]);
+  // const [activeNav, setActiveNav] = useState(() => links[0]);
 
   useEffect(() => {
+    console.log('activeNav' + activeNav);
     if (activeNav === links[0]) {
+      getPostersByCategory();
       getPosters();
     } else {
       getPostersByCategory(activeNav.text);
@@ -28,7 +30,6 @@ const App = ({ getPostersByCategory, getPosters }) => {
         <GlobalStyles />
         <AppContext.Provider
           value={{
-            nav: { links, setActiveNav, activeNav },
             setSubmitForm,
           }}
         >

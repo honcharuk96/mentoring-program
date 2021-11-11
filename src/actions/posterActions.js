@@ -89,11 +89,13 @@ export const getPosters = () => dispatch => {
     });
 };
 
-export const getPostersByCategory = category => dispatch => {
+export const getPostersByAcntiveNav = () => (dispatch,getState) => {
+  const {navigation} = getState();
+  const params = navigation.activeNav ==='all' ? {}: { search: navigation.activeNav, searchBy: 'genres' }
   dispatch(getPostersByCategoryStarted());
   axios
     .get('http://localhost:4000/movies', {
-      params: { search: category, searchBy: 'genres' },
+      params
     })
     .then(res => {
       dispatch(getPostersByCategorySuccess(res.data.data));

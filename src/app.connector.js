@@ -1,14 +1,18 @@
 import { connect } from 'react-redux';
-import { getPosters, getPostersByCategory } from './actions/posterActions';
+import { getPosters, getPostersByAcntiveNav } from './actions/posterActions';
 import App from './App';
 
+function mapStateToProps(state) {
+  const { navigation } = state;
+  return { activeNav: navigation.activeNav };
+};
 const mapDispatchToProps = dispatch => ({
   getPosters: () => {
     dispatch(getPosters());
   },
-  getPostersByCategory: category => {
-    dispatch(getPostersByCategory(category));
+  getPostersByCategory: () => {
+    dispatch(getPostersByAcntiveNav());
   },
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
