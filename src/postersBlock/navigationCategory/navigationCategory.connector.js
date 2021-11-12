@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import NavigationCategory from './navigationCategory.component';
-import {setActiveNav} from '../../actions/navigatinActions';
+import { setActiveNav, setVariantSort } from '../../actions/navigatinActions';
+import { getPostersByActiveNavWithSort } from '../../actions/posterActions';
 
 function mapStateToProps(state) {
   const { navigation } = state;
@@ -9,6 +10,10 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => ({
   changeActiveNav: nav => {
     dispatch(setActiveNav(nav));
+  },
+  changeVariantSort: variant => {
+    dispatch(setVariantSort(variant));
+    dispatch(getPostersByActiveNavWithSort());
   },
 });
 

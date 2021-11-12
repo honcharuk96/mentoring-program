@@ -89,14 +89,16 @@ export const getPosters = () => dispatch => {
     });
 };
 
-export const getPostersByAcntiveNav = () => (dispatch,getState) => {
-  const {navigation} = getState();
-  const params = navigation.activeNav ==='all' ? {}: { search: navigation.activeNav, searchBy: 'genres' }
+export const getPostersByActiveNavWithSort = () => (dispatch, getState) => {
+  const { navigation } = getState();
+
+  let params = { sortBy: navigation.variantSort, sortOrder: 'desc' };
+  if (navigation.activeNav !== 'all') {
+    params = { ...params, search: navigation.activeNav, searchBy: 'genres' };
+  }
   dispatch(getPostersByCategoryStarted());
   axios
-    .get('http://localhost:4000/movies', {
-      params
-    })
+    .get('http://localhost:4000/movies', { params })
     .then(res => {
       dispatch(getPostersByCategorySuccess(res.data.data));
       dispatch(getPostersByCategoryTotalAmountSuccess(res.data.totalAmount));
@@ -105,6 +107,7 @@ export const getPostersByAcntiveNav = () => (dispatch,getState) => {
       dispatch(getPostersByCategoryFailure(err.message));
     });
 };
+
 export const getPosterByID = posterId => dispatch => {
   dispatch(getPosterByIdStarted());
   axios

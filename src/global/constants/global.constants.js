@@ -8,6 +8,11 @@ export const links = [
   { id: 4, text: 'crime' },
 ];
 
+export const variantSorts = [
+  { name: 'release_date', label: 'Release date' },
+  { name: 'vote_average', label: 'Rating' },
+];
+
 export const statusForm = {
   ADD: 'ADD',
   UPDATE: 'UPDATE',

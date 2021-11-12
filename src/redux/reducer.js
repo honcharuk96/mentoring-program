@@ -4,7 +4,7 @@ import navigationReducer from './navigationReducer';
 
 const rootReducer = combineReducers({
   posters: postersReducer,
-  navigation: navigationReducer
+  navigation: navigationReducer,
 });
 
 export default rootReducer;

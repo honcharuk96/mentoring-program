@@ -20,25 +20,26 @@ const PosterInfoComponent = ({ posterId, getPosterById, poster }) => {
     getPosterById(posterId);
   }, [posterId]);
 
-  return(
-      poster && (<PosterDetail>
-          <PosterDetailRightBlock>
-            <Img src={poster.poster_path} alt={poster.title} loading={'lazy'}/>
-          </PosterDetailRightBlock>
-          <PosterDetailLeftBlock>
-            <PosterDetailHeader>
-              <PosterDetailTitle>{poster.title}</PosterDetailTitle>
-              <PosterDetailVoteAverage>{poster.vote_average}</PosterDetailVoteAverage>
-            </PosterDetailHeader>
-            <PosterCategoryComponent genres={poster.genres}/>
-            <PosterDetailTimes>
-              <PosterDetailDate>{poster.release_date.slice(0, 4)}</PosterDetailDate>
-              <PosterDetailDate>{convertMinsToHrsMins(poster.runtime)}</PosterDetailDate>
-            </PosterDetailTimes>
-            <PosterDetailOverview>{poster.overview}</PosterDetailOverview>
-          </PosterDetailLeftBlock>
-        </PosterDetail>
-      )
+  return (
+    poster && (
+      <PosterDetail>
+        <PosterDetailRightBlock>
+          <Img src={poster.poster_path} alt={poster.title} loading={'lazy'} />
+        </PosterDetailRightBlock>
+        <PosterDetailLeftBlock>
+          <PosterDetailHeader>
+            <PosterDetailTitle>{poster.title}</PosterDetailTitle>
+            <PosterDetailVoteAverage>{poster.vote_average}</PosterDetailVoteAverage>
+          </PosterDetailHeader>
+          <PosterCategoryComponent genres={poster.genres} />
+          <PosterDetailTimes>
+            <PosterDetailDate>{poster.release_date.slice(0, 4)}</PosterDetailDate>
+            <PosterDetailDate>{convertMinsToHrsMins(poster.runtime)}</PosterDetailDate>
+          </PosterDetailTimes>
+          <PosterDetailOverview>{poster.overview}</PosterDetailOverview>
+        </PosterDetailLeftBlock>
+      </PosterDetail>
+    )
   );
 };
 export default PosterInfoComponent;

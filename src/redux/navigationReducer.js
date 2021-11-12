@@ -1,26 +1,18 @@
-import {
-  SET_ACTIVE_NAV,
-} from '../actions/types';
+import { SET_ACTIVE_NAV, SET_VARIANT_SORT } from '../actions/types';
 
 const initialState = {
   loading: false,
-  selectedCategory: 'release_date',
+  variantSort: 'release_date',
   activeNav: 'all',
-  navigationItems:[
-    { id: 0, text: 'all' },
-    { id: 1, text: 'documentary' },
-    { id: 2, text: 'comedy' },
-    { id: 3, text: 'horror' },
-    { id: 4, text: 'crime' },
-  ],
   error: null,
-
 };
 
 export default function navigationReducer(state = initialState, action) {
   switch (action.type) {
     case SET_ACTIVE_NAV:
-      return { ...state,  activeNav: action.payload };
+      return { ...state, activeNav: action.payload };
+    case SET_VARIANT_SORT:
+      return { ...state, variantSort: action.payload };
     default:
       return state;
   }

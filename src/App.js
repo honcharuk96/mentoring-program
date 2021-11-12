@@ -6,22 +6,14 @@ import FooterComponent from './footer/footer.component';
 import PostersArea from './postersBlock/postersBlock.component';
 import ErrorBoundary from './global/components/errorComponent/errorBoundary.component';
 import { BigLine } from './global/components/bigLine/bigLine.styled';
-import { links } from './global/constants/global.constants';
 import PropTypes from 'prop-types';
 
 export const AppContext = createContext(null);
-const App = ({ getPostersByCategory, getPosters, activeNav}) => {
+const App = ({ getPostersByActiveNavWithSort, activeNav }) => {
   const [submitForm, setSubmitForm] = useState({ form: null });
-  // const [activeNav, setActiveNav] = useState(() => links[0]);
 
   useEffect(() => {
-    console.log('activeNav' + activeNav);
-    if (activeNav === links[0]) {
-      getPostersByCategory();
-      getPosters();
-    } else {
-      getPostersByCategory(activeNav.text);
-    }
+    getPostersByActiveNavWithSort()
   }, [activeNav, submitForm]);
 
   return (
@@ -46,6 +38,5 @@ const App = ({ getPostersByCategory, getPosters, activeNav}) => {
 export default hot(module)(App);
 
 App.propTypes = {
-  getPosters: PropTypes.func.isRequired,
-  getPostersByCategory: PropTypes.func.isRequired,
+  getPostersByActiveNavWithSort: PropTypes.func.isRequired,
 };
