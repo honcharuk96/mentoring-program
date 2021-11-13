@@ -1,19 +1,14 @@
-import React, { useCallback, useContext, useState } from 'react';
-import { AppContext } from '../../App';
-import { addPoster } from '../../servise/posterService';
-import { convertPosterState, getDefaultPosterState, statusForm } from '../../global/constants/global.constants';
+import React, { useCallback, useState } from 'react';
+import { convertPosterState, getDefaultPosterState } from '../../global/constants/global.constants';
 import { ButList, FormHeader, Input, InputWrapper, Label, TextArea } from './posterForm.styled';
 import { SelectElementComponent } from './selectElement.component';
 import RedButtonComponent from '../../global/components/redButton/redButton.component';
 import PropTypes from 'prop-types';
 
-export const PosterAddForm = ({ closeForm }) => {
-  const { setSubmitForm } = useContext(AppContext);
+export const PosterAddForm = ({ closeForm, addPoster }) => {
   const [posterFormData, setPosterFormData] = useState(() => getDefaultPosterState());
 
-  const resetForm = useCallback(() => {
-    setPosterFormData(getDefaultPosterState);
-  }, []);
+  const resetForm = useCallback(() => setPosterFormData(getDefaultPosterState), []);
 
   const onChangeField = el => {
     const { name, value } = el.target;
@@ -23,11 +18,10 @@ export const PosterAddForm = ({ closeForm }) => {
     setPosterFormData({ ...posterFormData, selectedGenres: selected });
   };
 
-  const submitFormHandler = async () => {
+  const submitFormHandler = () => {
     const poster = convertPosterState(posterFormData);
-    await addPoster(poster);
+    addPoster(poster);
     closeForm();
-    setSubmitForm({ form: statusForm.ADD });
   };
 
   return (
@@ -113,4 +107,5 @@ export const PosterAddForm = ({ closeForm }) => {
 
 PosterAddForm.propTypes = {
   closeForm: PropTypes.func.isRequired,
+  addPoster: PropTypes.func.isRequired,
 };

@@ -12,7 +12,7 @@ import headerImg from '../../public/images/Header.png';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-const PosterForm = React.lazy(() => import('../postersBlock/posterForm/posterForm.component'));
+const PosterForm = React.lazy(() => import('../postersBlock/posterForm/posterForm.connector'));
 
 const HeaderComponent = ({ setSelectedPoster, selectedPoster }) => {
   const [showAdd, setShowForm] = useToggle();

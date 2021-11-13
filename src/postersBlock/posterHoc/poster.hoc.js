@@ -5,7 +5,7 @@ import { statusForm } from '../../global/constants/global.constants';
 import ReactDOM from 'react-dom';
 import { useToggle } from '../../global/hooks/useToggle';
 
-const PosterForm = lazy(() => import('../posterForm/posterForm.component'));
+const PosterForm = lazy(() => import('../posterForm/posterForm.connector'));
 export const withForm = Component => {
   const PosterWIthForm = ({ id, src, alt, title, date, genres }) => {
     const [showUpdate, setShowUpdate] = useToggle();

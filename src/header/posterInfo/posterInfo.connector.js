@@ -5,11 +5,11 @@ import { getPosterByID } from '../../actions/posterActions';
 
 function mapStateToProps(state) {
   const { posters } = state;
-  return { poster: posters.posterDataById };
+  return { poster: posters.posterDataForPosterInfo };
 }
 const mapDispatchToProps = dispatch => ({
   getPosterById: posterId => {
-    dispatch(getPosterByID(posterId));
+    dispatch(getPosterByID(posterId, true));
   },
 });
 

@@ -10,9 +10,13 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => ({
   changeActiveNav: nav => {
     dispatch(setActiveNav(nav));
+    dispatch(getPostersByActiveNavWithSort());
   },
   changeVariantSort: variant => {
     dispatch(setVariantSort(variant));
+    dispatch(getPostersByActiveNavWithSort());
+  },
+  getPostersByActiveNavWithSort: () => {
     dispatch(getPostersByActiveNavWithSort());
   },
 });

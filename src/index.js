@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import store from './redux/store';
 import { Provider } from 'react-redux';
-import App from './app.connector';
+import App from './app.js';
 
 const rootId = document.getElementById('root');
 if (process.env.NODE_ENV === 'development') {

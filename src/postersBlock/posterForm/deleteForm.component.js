@@ -1,17 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { ButList, FormHeader, SupText } from './posterForm.styled';
-import { deletePoster } from '../../servise/posterService';
-import { statusForm } from '../../global/constants/global.constants';
-import { AppContext } from '../../App';
 import RedButtonComponent from '../../global/components/redButton/redButton.component';
 import PropTypes from 'prop-types';
 
-export const PosterDeleteForm = ({ id, closeForm }) => {
-  const { setSubmitForm } = useContext(AppContext);
-  const submitFormHandler = async () => {
-    await deletePoster(id);
+export const PosterDeleteForm = ({ id, closeForm, deletePoster }) => {
+  const submitFormHandler = () => {
+    deletePoster(id);
     closeForm();
-    setSubmitForm({ form: statusForm.DELETE });
   };
 
   return (
@@ -28,4 +23,5 @@ export const PosterDeleteForm = ({ id, closeForm }) => {
 PosterDeleteForm.propTypes = {
   id: PropTypes.number.isRequired,
   closeForm: PropTypes.func.isRequired,
+  deletePoster: PropTypes.func.isRequired,
 };

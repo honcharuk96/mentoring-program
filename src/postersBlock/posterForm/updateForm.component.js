@@ -1,35 +1,28 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { AppContext } from '../../App';
-import { getPosterById, updatePoster } from '../../servise/posterService';
-import { convertPosterState, getDefaultPosterState, statusForm } from '../../global/constants/global.constants';
+import React, { useCallback, useEffect, useState } from 'react';
+import { convertPosterState, getDefaultPosterState } from '../../global/constants/global.constants';
 import { ButList, FormHeader, Input, InputWrapper, Label, TextArea } from './posterForm.styled';
 import { SelectElementComponent } from './selectElement.component';
 import RedButtonComponent from '../../global/components/redButton/redButton.component';
 import { convertGenres, convertSelectedGenres } from './formHelper';
 import PropTypes from 'prop-types';
 
-export const PosterUpdateForm = ({ id, closeForm }) => {
-  const { setSubmitForm } = useContext(AppContext);
+export const PosterUpdateForm = ({ closeForm, posterData, updatePoster }) => {
   const [defaultPosterState, setDefaultPosterState] = useState([]);
   const [posterDataById, setPosterDataById] = useState(() => getDefaultPosterState(true));
 
   useEffect(() => {
-    async function getPoster() {
-      const { poster } = await getPosterById(id);
-      const transformPoster = {
-        ...poster,
-        genres: convertGenres(poster.genres),
-        selectedGenres: convertSelectedGenres(poster.genres),
-      };
-      setDefaultPosterState(transformPoster);
-      setPosterDataById(transformPoster);
-    }
-    getPoster();
-  }, []);
+    if (posterData === null) return;
+    const poster = posterData;
+    const transformPoster = {
+      ...poster,
+      genres: convertGenres(poster.genres),
+      selectedGenres: convertSelectedGenres(poster.genres),
+    };
+    setDefaultPosterState(transformPoster);
+    setPosterDataById(transformPoster);
+  }, [posterData]);
 
-  const resetForm = useCallback(() => {
-    setPosterDataById(defaultPosterState);
-  }, [defaultPosterState]);
+  const resetForm = useCallback(() => setPosterDataById(defaultPosterState), [defaultPosterState]);
 
   const onChangeField = el => {
     const { name, value } = el.target;
@@ -39,11 +32,10 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
     setPosterDataById({ ...posterDataById, selectedGenres: selected });
   };
 
-  const submitFormHandler = async () => {
+  const submitFormHandler = () => {
     const poster = convertPosterState(posterDataById, true);
-    await updatePoster(poster);
+    updatePoster(poster);
     closeForm();
-    setSubmitForm({ form: statusForm.UPDATE });
   };
   return (
     <>
@@ -129,4 +121,21 @@ export const PosterUpdateForm = ({ id, closeForm }) => {
 PosterUpdateForm.propTypes = {
   id: PropTypes.number.isRequired,
   closeForm: PropTypes.func.isRequired,
+  updatePoster: PropTypes.func.isRequired,
+  posterData: PropTypes.arrayOf(
+    PropTypes.shape({
+      budget: PropTypes.number,
+      genres: PropTypes.arrayOf(PropTypes.string),
+      id: PropTypes.number.isRequired,
+      overview: PropTypes.string,
+      poster_path: PropTypes.string,
+      release_date: PropTypes.string.isRequired,
+      revenue: PropTypes.number,
+      runtime: PropTypes.number,
+      tagline: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      vote_average: PropTypes.number,
+      vote_count: PropTypes.number,
+    }),
+  ),
 };

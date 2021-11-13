@@ -11,6 +11,7 @@ import {
   GET_POSTER_BY_ID_SUCCESS,
   GET_POSTER_BY_ID_STARTED,
   GET_POSTER_BY_ID_FAILURE,
+  GET_POSTER_BY_ID_FOR_POSTER_INFO_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   error: null,
   selectedPoster: null,
   posterDataById: null,
+  posterDataForPosterInfo: null,
 };
 
 export default function postersReducer(state = initialState, action) {
@@ -42,6 +44,8 @@ export default function postersReducer(state = initialState, action) {
       return { ...state, loading: true };
     case GET_POSTER_BY_ID_SUCCESS:
       return { ...state, loading: false, error: null, posterDataById: action.payload };
+    case GET_POSTER_BY_ID_FOR_POSTER_INFO_SUCCESS:
+      return { ...state, loading: false, error: null, posterDataForPosterInfo: action.payload };
     case GET_POSTER_BY_ID_FAILURE:
       return { ...state, loading: false, error: action.payload.error };
 
