@@ -14,23 +14,20 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getPostersByActiveNavWithSort: () => {
-    dispatch(getPostersByActiveNavWithSort());
+  getPosterById: async posterId => {
+    await dispatch(getPosterByID(posterId));
   },
-  getPosterById: posterId => {
-    dispatch(getPosterByID(posterId));
+  addPoster: async data => {
+    await dispatch(addPoster(data));
+    await dispatch(getPostersByActiveNavWithSort());
   },
-  addPoster: data => {
-    dispatch(addPoster(data));
-    dispatch(getPostersByActiveNavWithSort());
+  updatePoster: async data => {
+    await dispatch(updatePoster(data));
+    await dispatch(getPostersByActiveNavWithSort());
   },
-  updatePoster: data => {
-    dispatch(updatePoster(data));
-    dispatch(getPostersByActiveNavWithSort());
-  },
-  deletePoster: id => {
-    dispatch(deletePoster(id));
-    dispatch(getPostersByActiveNavWithSort());
+  deletePoster: async id => {
+    await dispatch(deletePoster(id));
+    await dispatch(getPostersByActiveNavWithSort());
   },
 });
 

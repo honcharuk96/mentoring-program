@@ -8,6 +8,15 @@ const placeHolder =
 const Image = styled.img`
   width: ${props => (props.isBanner ? '100%' : '320px')};
   height: ${props => (props.isBanner ? '100%' : '480px')};
+  @keyframes loaded {
+    0% {
+      opacity: 0.1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   ${props =>
     props.isBanner &&
     css`
@@ -18,15 +27,6 @@ const Image = styled.img`
       right: 0;
       z-index: -1;
     `}
-
-  @keyframes loaded {
-    0% {
-      opacity: 0.1;
-    }
-    100% {
-      opacity: 1;
-    }
-  };
 
   &.loaded:not(.has-error) {
     animation: loaded 300ms ease-in-out;

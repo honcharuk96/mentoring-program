@@ -22,7 +22,7 @@ export const statusForm = {
 export const getDefaultPosterState = (withId = false) => {
   const defData = {
     title: '',
-    vote_average: 0,
+    vote_average: '',
     release_date: '',
     poster_path: '',
     runtime: '',

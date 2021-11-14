@@ -8,8 +8,8 @@ function mapStateToProps(state) {
   return { poster: posters.posterDataForPosterInfo };
 }
 const mapDispatchToProps = dispatch => ({
-  getPosterById: posterId => {
-    dispatch(getPosterByID(posterId, true));
+  getPosterById: async posterId => {
+    await dispatch(getPosterByID(posterId, true));
   },
 });
 
