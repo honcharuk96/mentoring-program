@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { convertPosterState, getDefaultPosterState } from '../../global/constants/global.constants';
 import { FormHeader } from './posterForm.styled';
 import { convertGenres, convertSelectedGenres, FormValidationSchema } from './formHelper';
@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import { FormContentComponent } from './formContent.component';
 
-export const PosterUpdateForm = ({ closeForm, posterData, updatePoster }) => {
+const PosterUpdateForm = ({ closeForm, posterData, updatePoster }) => {
   const [posterDataById, setPosterDataById] = useState(() => getDefaultPosterState(true));
 
   useEffect(() => {
@@ -44,9 +44,9 @@ export const PosterUpdateForm = ({ closeForm, posterData, updatePoster }) => {
     </>
   );
 };
+export default memo(PosterUpdateForm);
 
 PosterUpdateForm.propTypes = {
-  id: PropTypes.number.isRequired,
   closeForm: PropTypes.func.isRequired,
   updatePoster: PropTypes.func.isRequired,
   posterData: PropTypes.shape({
@@ -60,7 +60,7 @@ PosterUpdateForm.propTypes = {
     overview: PropTypes.string.isRequired,
     budget: PropTypes.number,
     revenue: PropTypes.number,
-    runtime: PropTypes.number.isRequired,
+    runtime: PropTypes.number,
     genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   }),
 };

@@ -7,6 +7,7 @@ import {
   updatePoster,
 } from '../../actions/posterActions';
 import PosterForm from './posterForm.component';
+import { closeForms } from '../../actions/modalFormActions';
 
 function mapStateToProps(state) {
   const { posters } = state;
@@ -28,6 +29,9 @@ const mapDispatchToProps = dispatch => ({
   deletePoster: async id => {
     await dispatch(deletePoster(id));
     await dispatch(getPostersByActiveNavWithSort());
+  },
+  closeForms: () => {
+    dispatch(closeForms());
   },
 });
 

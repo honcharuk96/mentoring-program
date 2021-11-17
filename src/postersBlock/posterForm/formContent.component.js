@@ -36,7 +36,7 @@ export const FormContentComponent = ({ values, handleChange, errors, touched, se
       />
       <Label key={'runtime'}>
         runtime
-        <Input type={'number'} name={'runtime'} value={values.runtime} onChange={handleChange} />
+        <Input type={'number'} name={'runtime'} value={values.runtime || 0} onChange={handleChange} />
         {errors.runtime && touched.runtime ? <ErrorText>{errors.runtime} </ErrorText> : null}
       </Label>
       <Label key={'overview'} fullWidth>

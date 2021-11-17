@@ -6,6 +6,7 @@ import FooterComponent from './footer/footer.component';
 import PostersArea from './postersBlock/postersBlock.component';
 import ErrorBoundary from './global/components/errorComponent/errorBoundary.component';
 import { BigLine } from './global/components/bigLine/bigLine.styled';
+import ModalPoster from './postersBlock/modalPoster/modalPoster.connector';
 
 const App = () => (
   <>
@@ -15,6 +16,7 @@ const App = () => (
       <BigLine />
       <PostersArea />
       <FooterComponent />
+      <ModalPoster />
     </ErrorBoundary>
   </>
 );

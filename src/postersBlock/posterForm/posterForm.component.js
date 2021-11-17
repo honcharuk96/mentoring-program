@@ -1,43 +1,42 @@
 import React, { useEffect } from 'react';
 import { CloseBut, FormWrapper, FormWrapperGlobal } from './posterForm.styled';
 import { PosterAddForm } from './addForm.component';
-import { PosterUpdateForm } from './updateForm.component';
+import PosterUpdateForm from './updateForm.component';
 import { PosterDeleteForm } from './deleteForm.component';
 import PropTypes from 'prop-types';
+import { statusForm } from '../../global/constants/global.constants';
 
 const PosterForm = ({
-  id,
-  showAdd,
-  showUpdate,
-  showDelete,
-  changeStateModal,
+  modalForm,
   getPosterById,
   posterDataById,
   addPoster,
   updatePoster,
   deletePoster,
+  closeForms,
 }) => {
   useEffect(() => {
-    if (id && showUpdate) {
-      getPosterById(id);
+    if (modalForm.idForModal && modalForm[statusForm.UPDATE]) {
+      getPosterById(modalForm.idForModal);
     }
   }, []);
   return (
     <>
       <FormWrapperGlobal>
         <FormWrapper>
-          <CloseBut onClick={changeStateModal} />
-          {showAdd && <PosterAddForm addPoster={addPoster} closeForm={changeStateModal} />}
-          {showUpdate && (
+          <CloseBut onClick={closeForms} />
+          {modalForm[statusForm.ADD] && <PosterAddForm addPoster={addPoster} closeForm={closeForms} />}
+          {modalForm[statusForm.UPDATE] && (
             <PosterUpdateForm
               updatePoster={updatePoster}
               posterData={posterDataById}
               getPosterById={getPosterById}
-              id={id}
-              closeForm={changeStateModal}
+              closeForm={closeForms}
             />
           )}
-          {showDelete && <PosterDeleteForm deletePoster={deletePoster} id={id} closeForm={changeStateModal} />}
+          {modalForm[statusForm.DELETE] && (
+            <PosterDeleteForm deletePoster={deletePoster} id={modalForm.idForModal} closeForm={closeForms} />
+          )}
         </FormWrapper>
       </FormWrapperGlobal>
     </>
@@ -46,18 +45,22 @@ const PosterForm = ({
 export default PosterForm;
 
 PosterForm.defaultProps = {
-  id: null,
-  showAdd: false,
-  showUpdate: false,
-  showDelete: false,
+  modalForm: {
+    [statusForm.ADD]: false,
+    [statusForm.UPDATE]: false,
+    [statusForm.DELETE]: false,
+    idForModal: null,
+  },
 };
 
 PosterForm.propTypes = {
-  id: PropTypes.number,
-  showAdd: PropTypes.bool,
-  showUpdate: PropTypes.bool,
-  showDelete: PropTypes.bool,
-  changeStateModal: PropTypes.func.isRequired,
+  modalForm: PropTypes.shape({
+    [statusForm.ADD]: PropTypes.bool.isRequired,
+    [statusForm.UPDATE]: PropTypes.bool.isRequired,
+    [statusForm.DELETE]: PropTypes.bool.isRequired,
+    idForModal: PropTypes.number,
+  }),
+  closeForms: PropTypes.func.isRequired,
   getPosterById: PropTypes.func.isRequired,
   addPoster: PropTypes.func.isRequired,
   updatePoster: PropTypes.func.isRequired,
