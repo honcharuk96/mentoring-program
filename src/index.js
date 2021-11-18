@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import App from './app.js';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import NotFound from './global/components/notFound/NotFound.component';
 
 const rootId = document.getElementById('root');
 if (process.env.NODE_ENV === 'development') {
@@ -10,9 +12,12 @@ if (process.env.NODE_ENV === 'development') {
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <App />
+          <Router>
+                      <Route exact path={'/'} component={App}/>
+                      < Route path={'*'} component={NotFound} />
+          </Router>
       </Provider>
-    </React.StrictMode>,
+     </React.StrictMode>,
     rootId,
   );
   // });
