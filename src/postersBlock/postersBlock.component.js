@@ -1,14 +1,14 @@
 import React, { memo } from 'react';
-import PosterCount from './postersCount/postersCount.component';
 import { Main } from '../global/globalStyles';
-import NavigationCategory from './navigationCategory/navigationCategory.component';
-import ListPosters from './listPosters.component';
+import NavigationCategory from './navigationCategory/navigationCategory.connector';
+import ListPosters from './listPosters.connector';
+import PosterCountComponent from './postersCount/postersCount.connector';
 
 const PostersArea = () => (
   <>
     <Main>
       <NavigationCategory />
-      <PosterCount />
+      <PosterCountComponent />
       <ListPosters />
     </Main>
   </>

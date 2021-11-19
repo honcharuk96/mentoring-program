@@ -1,11 +1,11 @@
-import React, {lazy, memo, Suspense} from 'react';
+import React, { lazy, memo, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { Atag, HoverPoster, Nav, Ul } from './posterHoc.styled';
 import { statusForm } from '../../global/constants/global.constants';
 import ReactDOM from 'react-dom';
 import { useToggle } from '../../global/hooks/useToggle';
 
-const PosterForm = lazy(() => import('../posterForm/posterForm.component'));
+const PosterForm = lazy(() => import('../posterForm/posterForm.connector'));
 export const withForm = Component => {
   const PosterWIthForm = ({ id, src, alt, title, date, genres }) => {
     const [showUpdate, setShowUpdate] = useToggle();

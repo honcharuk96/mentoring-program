@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-const placeHolder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=';
+const placeHolder =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=';
 
 const Image = styled.img`
   width: ${props => (props.isBanner ? '100%' : '320px')};
@@ -26,7 +27,7 @@ const Image = styled.img`
       opacity: 1;
     }
   };
-  
+
   &.loaded:not(.has-error) {
     animation: loaded 300ms ease-in-out;
   }

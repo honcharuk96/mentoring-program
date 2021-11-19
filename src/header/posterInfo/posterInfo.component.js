@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { getPosterById } from '../../servise/posterService';
+import React, { useEffect } from 'react';
 import { Img } from '../../postersBlock/postersBlock.styled';
 import PosterCategoryComponent from '../../postersBlock/posterCategory/posterCategory.component';
 import { convertMinsToHrsMins } from '../../global/helpers';
@@ -14,27 +13,15 @@ import {
   PosterDetailTitle,
   PosterDetailVoteAverage,
 } from './posterInfo.styled';
+import PropTypes from 'prop-types';
 
-export const PosterInfoComponent = posterId => {
-  const [poster, setPoster] = useState({
-    title: '',
-    release_date: '',
-    poster_path: '',
-    vote_average: 0,
-    genres: [],
-    runtime: '',
-    overview: '',
-  });
+const PosterInfoComponent = ({ posterId, getPosterById, poster }) => {
   useEffect(() => {
-    async function getPoster() {
-      const { poster } = await getPosterById(posterId.posterId);
-      setPoster(poster);
-    }
-    getPoster();
+    getPosterById(posterId);
   }, [posterId]);
 
   return (
-    <>
+    poster && (
       <PosterDetail>
         <PosterDetailRightBlock>
           <Img src={poster.poster_path} alt={poster.title} loading={'lazy'} />
@@ -52,6 +39,26 @@ export const PosterInfoComponent = posterId => {
           <PosterDetailOverview>{poster.overview}</PosterDetailOverview>
         </PosterDetailLeftBlock>
       </PosterDetail>
-    </>
+    )
   );
+};
+export default PosterInfoComponent;
+
+PosterInfoComponent.propTypes = {
+  posterId: PropTypes.number.isRequired,
+  getPosterById: PropTypes.func.isRequired,
+  poster: PropTypes.shape({
+    id: PropTypes.number,
+    budget: PropTypes.number,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    overview: PropTypes.string,
+    poster_path: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    revenue: PropTypes.number,
+    runtime: PropTypes.number.isRequired,
+    tagline: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    vote_count: PropTypes.number,
+  }),
 };

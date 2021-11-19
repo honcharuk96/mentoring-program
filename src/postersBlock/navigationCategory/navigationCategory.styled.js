@@ -24,3 +24,25 @@ export const NavigationItem = styled.li`
       border-bottom: 2px solid #f65261;
     `}
 `;
+
+export const SortList = styled.select`
+  background: transparent;
+  border: none;
+  outline: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.888889px;
+  text-transform: uppercase;
+  color: #ffffff;
+`;
+export const SortListText = styled.div`
+  opacity: 0.6;
+`;
+export const SortListBlock = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 175px;
+`;
