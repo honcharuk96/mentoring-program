@@ -1,4 +1,4 @@
-import axios from 'axios';
+import API from '../global/API';
 import {
   ADD_POSTER_FAILURE,
   ADD_POSTER_STARTED,
@@ -23,8 +23,6 @@ import {
   UPDATE_POSTER_STARTED,
   UPDATE_POSTER_SUCCESS,
 } from './types';
-
-const defaultUrl = 'http://localhost:4000/movies';
 
 export const setSelectedPoster = id => ({
   type: SET_SELECTED_POSTER,
@@ -141,17 +139,15 @@ const deletePosterFailure = error => ({
   },
 });
 
-export const getPosters = () => dispatch => {
+export const getPosters = () => async dispatch => {
   dispatch(getPostersStarted());
-  axios
-    .get(defaultUrl)
-    .then(res => {
-      dispatch(getPostersSuccess(res.data.data));
-      dispatch(getPostersTotalAmountSuccess(res.data.totalAmount));
-    })
-    .catch(err => {
-      dispatch(getPostersFailure(err.message));
-    });
+  try {
+    const result = await API.get('/');
+    dispatch(getPostersSuccess(result.data.data));
+    dispatch(getPostersTotalAmountSuccess(result.data.totalAmount));
+  } catch (err) {
+    dispatch(getPostersFailure(err.message));
+  }
 };
 
 export const getPostersByActiveNavWithSort = () => async (dispatch, getState) => {
@@ -162,59 +158,51 @@ export const getPostersByActiveNavWithSort = () => async (dispatch, getState) =>
     params = { ...params, search: navigation.activeNav, searchBy: 'genres' };
   }
   dispatch(getPostersByCategoryStarted());
-  await axios
-    .get(defaultUrl, { params })
-    .then(res => {
-      dispatch(getPostersByCategorySuccess(res.data.data));
-      dispatch(getPostersByCategoryTotalAmountSuccess(res.data.totalAmount));
-    })
-    .catch(err => {
-      dispatch(getPostersByCategoryFailure(err.message));
-    });
+  try {
+    const result = await API.get('/', { params });
+    dispatch(getPostersByCategorySuccess(result.data.data));
+    dispatch(getPostersByCategoryTotalAmountSuccess(result.data.totalAmount));
+  } catch (err) {
+    dispatch(getPostersByCategoryFailure(err.message));
+  }
 };
 
 export const getPosterByID = (posterId, forPosterInfo = false) => async dispatch => {
   dispatch(getPosterByIdStarted());
-  await axios
-    .get(`${defaultUrl}/${posterId}`)
-    .then(res => {
-      forPosterInfo ? dispatch(getPosterByForPosterInfoSuccess(res.data)) : dispatch(getPosterByIdSuccess(res.data));
-    })
-    .catch(err => {
-      dispatch(getPosterByIdFailure(err.message));
-    });
-};
-export const addPoster = data => async dispatch => {
-  dispatch(addPosterStarted());
-  await axios
-    .post(defaultUrl, data)
-    .then(res => {
-      dispatch(addPosterSuccess(res.data));
-    })
-    .catch(err => {
-      dispatch(addPosterFailure(err.message));
-    });
+  try {
+    const { data } = await API.get(`/${posterId}`);
+    forPosterInfo ? dispatch(getPosterByForPosterInfoSuccess(data)) : dispatch(getPosterByIdSuccess(data));
+  } catch (err) {
+    dispatch(getPosterByIdFailure(err.message));
+  }
 };
 
-export const updatePoster = data => async dispatch => {
-  dispatch(updatePosterStarted());
-  await axios
-    .put(defaultUrl, data)
-    .then(res => {
-      dispatch(updatePosterSuccess(res.data));
-    })
-    .catch(err => {
-      dispatch(updatePosterFailure(err.message));
-    });
+export const addPoster = posterData => async dispatch => {
+  dispatch(addPosterStarted());
+  try {
+    const { data } = await API.post('/', posterData);
+    dispatch(addPosterSuccess(data));
+  } catch (err) {
+    dispatch(addPosterFailure(err.message));
+  }
 };
+
+export const updatePoster = posterData => async dispatch => {
+  dispatch(updatePosterStarted());
+  try {
+    const { data } = await API.put('/', posterData);
+    dispatch(updatePosterSuccess(data));
+  } catch (err) {
+    dispatch(updatePosterFailure(err.message));
+  }
+};
+
 export const deletePoster = id => async dispatch => {
   dispatch(deletePosterStarted());
-  await axios
-    .delete(`${defaultUrl}/${id}`)
-    .then(res => {
-      dispatch(deletePosterSuccess(res.data.data));
-    })
-    .catch(err => {
-      dispatch(deletePosterFailure(err.message));
-    });
+  try {
+    const { data } = await API.delete(`/${id}`);
+    dispatch(deletePosterSuccess(data));
+  } catch (err) {
+    dispatch(deletePosterFailure(err.message));
+  }
 };
