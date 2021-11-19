@@ -1,12 +1,12 @@
 import React from 'react';
-import { Label } from './posterForm.styled';
+import { ErrorText, Label } from './posterForm.styled';
 import { components, default as ReactSelect } from 'react-select';
 import PropTypes from 'prop-types';
 
-export const SelectElementComponent = ({ genres, selectedGenres, handleChange }) => (
+export const SelectElementComponent = ({ genres, selectedGenres, handleChange, errors, touched }) => (
   <Label key={'genre'} isOpacity>
     {'genre'}
-    <span className="d-inline-block" data-toggle="popover" data-trigger="focus" data-content="Please select account(s)">
+    <span className="d-inline-block" data-toggle="popover" data-trigger="focus" data-content="Please select genres(s)">
       <ReactSelect
         options={genres}
         name={'genre'}
@@ -22,10 +22,13 @@ export const SelectElementComponent = ({ genres, selectedGenres, handleChange })
         id={'reactSelect'}
       />
     </span>
+    {errors.selectedGenres && touched.selectedGenres ? <ErrorText>{errors.selectedGenres} </ErrorText> : null}
   </Label>
 );
 
 SelectElementComponent.propTypes = {
+  errors: PropTypes.object,
+  touched: PropTypes.object,
   genres: PropTypes.array.isRequired,
   selectedGenres: PropTypes.array.isRequired,
   handleChange: PropTypes.func.isRequired,

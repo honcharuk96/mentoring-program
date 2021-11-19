@@ -154,7 +154,7 @@ export const getPosters = () => dispatch => {
     });
 };
 
-export const getPostersByActiveNavWithSort = () => (dispatch, getState) => {
+export const getPostersByActiveNavWithSort = () => async (dispatch, getState) => {
   const { navigation } = getState();
 
   let params = { sortBy: navigation.variantSort, sortOrder: 'desc' };
@@ -162,7 +162,7 @@ export const getPostersByActiveNavWithSort = () => (dispatch, getState) => {
     params = { ...params, search: navigation.activeNav, searchBy: 'genres' };
   }
   dispatch(getPostersByCategoryStarted());
-  axios
+  await axios
     .get(defaultUrl, { params })
     .then(res => {
       dispatch(getPostersByCategorySuccess(res.data.data));
@@ -173,9 +173,9 @@ export const getPostersByActiveNavWithSort = () => (dispatch, getState) => {
     });
 };
 
-export const getPosterByID = (posterId, forPosterInfo = false) => dispatch => {
+export const getPosterByID = (posterId, forPosterInfo = false) => async dispatch => {
   dispatch(getPosterByIdStarted());
-  axios
+  await axios
     .get(`${defaultUrl}/${posterId}`)
     .then(res => {
       forPosterInfo ? dispatch(getPosterByForPosterInfoSuccess(res.data)) : dispatch(getPosterByIdSuccess(res.data));
@@ -184,12 +184,11 @@ export const getPosterByID = (posterId, forPosterInfo = false) => dispatch => {
       dispatch(getPosterByIdFailure(err.message));
     });
 };
-export const addPoster = data => dispatch => {
+export const addPoster = data => async dispatch => {
   dispatch(addPosterStarted());
-  axios
+  await axios
     .post(defaultUrl, data)
     .then(res => {
-      console.log('res' + res);
       dispatch(addPosterSuccess(res.data));
     })
     .catch(err => {
@@ -197,9 +196,9 @@ export const addPoster = data => dispatch => {
     });
 };
 
-export const updatePoster = data => dispatch => {
+export const updatePoster = data => async dispatch => {
   dispatch(updatePosterStarted());
-  axios
+  await axios
     .put(defaultUrl, data)
     .then(res => {
       dispatch(updatePosterSuccess(res.data));
@@ -208,9 +207,9 @@ export const updatePoster = data => dispatch => {
       dispatch(updatePosterFailure(err.message));
     });
 };
-export const deletePoster = id => dispatch => {
+export const deletePoster = id => async dispatch => {
   dispatch(deletePosterStarted());
-  axios
+  await axios
     .delete(`${defaultUrl}/${id}`)
     .then(res => {
       dispatch(deletePosterSuccess(res.data.data));

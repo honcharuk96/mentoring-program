@@ -1,119 +1,46 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { convertPosterState, getDefaultPosterState } from '../../global/constants/global.constants';
-import { ButList, FormHeader, Input, InputWrapper, Label, TextArea } from './posterForm.styled';
-import { SelectElementComponent } from './selectElement.component';
-import RedButtonComponent from '../../global/components/redButton/redButton.component';
-import { convertGenres, convertSelectedGenres } from './formHelper';
+import { FormHeader } from './posterForm.styled';
+import { convertGenres, convertSelectedGenres, FormValidationSchema } from './formHelper';
 import PropTypes from 'prop-types';
+import { useFormik } from 'formik';
+import { FormContentComponent } from './formContent.component';
 
 export const PosterUpdateForm = ({ closeForm, posterData, updatePoster }) => {
-  const [defaultPosterState, setDefaultPosterState] = useState([]);
   const [posterDataById, setPosterDataById] = useState(() => getDefaultPosterState(true));
 
   useEffect(() => {
     if (posterData === null) return;
-    const poster = posterData;
     const transformPoster = {
-      ...poster,
-      genres: convertGenres(poster.genres),
-      selectedGenres: convertSelectedGenres(poster.genres),
+      ...posterData,
+      genres: convertGenres(posterData.genres),
+      selectedGenres: convertSelectedGenres(posterData.genres),
     };
-    setDefaultPosterState(transformPoster);
     setPosterDataById(transformPoster);
   }, [posterData]);
 
-  const resetForm = useCallback(() => setPosterDataById(defaultPosterState), [defaultPosterState]);
-
-  const onChangeField = el => {
-    const { name, value } = el.target;
-    setPosterDataById({ ...posterDataById, [name]: value });
-  };
-  const handleChange = selected => {
-    setPosterDataById({ ...posterDataById, selectedGenres: selected });
-  };
-
-  const submitFormHandler = () => {
-    const poster = convertPosterState(posterDataById, true);
-    updatePoster(poster);
-    closeForm();
-  };
+  const { handleChange, handleReset, submitForm, values, errors, touched, setValues } = useFormik({
+    initialValues: posterDataById,
+    enableReinitialize: true,
+    validationSchema: FormValidationSchema,
+    onSubmit: values => {
+      const poster = convertPosterState(values, true);
+      updatePoster(poster);
+      closeForm();
+    },
+  });
   return (
     <>
       <FormHeader>Update movie</FormHeader>
-      <InputWrapper>
-        <Label key={'title'}>
-          title
-          <Input
-            required
-            pattern={'.{3,}'}
-            type={'text'}
-            name={'title'}
-            value={posterDataById.title}
-            onChange={onChangeField}
-          />
-        </Label>
-        <Label key={'release_date'}>
-          date
-          <Input
-            required={true}
-            pattern={'.{3,}'}
-            type={'date'}
-            name={'release_date'}
-            value={posterDataById.release_date}
-            onChange={onChangeField}
-          />
-        </Label>
-        <Label key={'poster_path'}>
-          movie url
-          <Input
-            required
-            pattern={'https://.*'}
-            type={'url'}
-            name={'poster_path'}
-            value={posterDataById.poster_path}
-            onChange={onChangeField}
-          />
-        </Label>
-        <Label key={'vote_average'}>
-          rating
-          <Input
-            required
-            step={'.01'}
-            min={0}
-            max={10}
-            type={'number'}
-            name={'vote_average'}
-            value={posterDataById.vote_average}
-            onChange={onChangeField}
-          />
-        </Label>
-        <SelectElementComponent
-          genres={posterDataById.genres}
-          selectedGenres={posterDataById.selectedGenres}
-          handleChange={handleChange}
-        />
-        <Label key={'runtime'}>
-          runtime
-          <Input
-            required
-            min={0}
-            type={'number'}
-            name={'runtime'}
-            value={posterDataById.runtime}
-            onChange={onChangeField}
-          />
-        </Label>
-        <Label key={'overview'} fullWidth>
-          overview
-          <TextArea name={'overview'} value={posterDataById.overview} onChange={onChangeField}>
-            {posterDataById.overview}
-          </TextArea>
-        </Label>
-      </InputWrapper>
-      <ButList>
-        <RedButtonComponent text={'Reset'} revertColor click={resetForm} />
-        <RedButtonComponent text={'Submit'} click={submitFormHandler} />
-      </ButList>
+      <FormContentComponent
+        values={values}
+        handleChange={handleChange}
+        errors={errors}
+        touched={touched}
+        setValues={setValues}
+        handleReset={handleReset}
+        submitForm={submitForm}
+      />
     </>
   );
 };
@@ -122,20 +49,18 @@ PosterUpdateForm.propTypes = {
   id: PropTypes.number.isRequired,
   closeForm: PropTypes.func.isRequired,
   updatePoster: PropTypes.func.isRequired,
-  posterData: PropTypes.arrayOf(
-    PropTypes.shape({
-      budget: PropTypes.number,
-      genres: PropTypes.arrayOf(PropTypes.string),
-      id: PropTypes.number.isRequired,
-      overview: PropTypes.string,
-      poster_path: PropTypes.string,
-      release_date: PropTypes.string.isRequired,
-      revenue: PropTypes.number,
-      runtime: PropTypes.number,
-      tagline: PropTypes.string,
-      title: PropTypes.string.isRequired,
-      vote_average: PropTypes.number,
-      vote_count: PropTypes.number,
-    }),
-  ),
+  posterData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    tagline: PropTypes.string,
+    vote_average: PropTypes.number,
+    vote_count: PropTypes.number,
+    release_date: PropTypes.string,
+    poster_path: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    budget: PropTypes.number,
+    revenue: PropTypes.number,
+    runtime: PropTypes.number.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }),
 };

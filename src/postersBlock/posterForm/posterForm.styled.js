@@ -128,3 +128,9 @@ export const SupText = styled.div`
   font-size: 20px;
   color: #ffffff;
 `;
+
+export const ErrorText = styled.div`
+  font-size: 10px;
+  color: white;
+  line-height: 1.5;
+`;

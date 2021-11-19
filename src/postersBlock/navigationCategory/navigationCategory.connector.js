@@ -8,16 +8,16 @@ function mapStateToProps(state) {
   return { activeNav: navigation.activeNav };
 }
 const mapDispatchToProps = dispatch => ({
-  changeActiveNav: nav => {
+  changeActiveNav: async nav => {
     dispatch(setActiveNav(nav));
-    dispatch(getPostersByActiveNavWithSort());
+    await dispatch(getPostersByActiveNavWithSort());
   },
-  changeVariantSort: variant => {
+  changeVariantSort: async variant => {
     dispatch(setVariantSort(variant));
-    dispatch(getPostersByActiveNavWithSort());
+    await dispatch(getPostersByActiveNavWithSort());
   },
-  getPostersByActiveNavWithSort: () => {
-    dispatch(getPostersByActiveNavWithSort());
+  getPostersByActiveNavWithSort: async () => {
+    await dispatch(getPostersByActiveNavWithSort());
   },
 });
 
