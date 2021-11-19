@@ -34,3 +34,6 @@ export const GET_ACTIVE_NAV = 'GET_ACTIVE_NAV';
 
 export const SET_VARIANT_SORT = 'SET_VARIANT_SORT';
 export const GET_VARIANT_SORT = 'GET_VARIANT_SORT';
+
+export const CLOSE_FORMS = 'CLOSE_FORMS';
+export const OPEN_MODAL_FORM = 'OPEN_MODAL_FORM';
