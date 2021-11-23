@@ -10,9 +10,21 @@ import { LazyImage } from '../global/components/lazyImage/lazyImage.compoent';
 import headerImg from '../../public/images/Header.png';
 import PropTypes from 'prop-types';
 import { statusForm } from '../global/constants/global.constants';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const HeaderComponent = ({ setSelectedPoster, selectedPoster, openModal }) => {
-  const closeSelectedPoster = useCallback(() => setSelectedPoster(null), []);
+  const history = useHistory();
+  const location = useLocation();
+  const closeSelectedPoster = useCallback(() => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.delete('movie');
+
+    history.push({
+      pathname: '/search',
+      search: searchParams.toString(),
+    });
+    setSelectedPoster(null);
+  }, []);
   return (
     <>
       {!selectedPoster ? (
