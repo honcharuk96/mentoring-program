@@ -85,7 +85,7 @@ export const LazyImage = ({ src, alt, isBanner }) => {
 };
 
 LazyImage.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
+  src: PropTypes.string,
+  alt: PropTypes.string,
   isBanner: PropTypes.bool,
 };

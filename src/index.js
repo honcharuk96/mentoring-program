@@ -21,7 +21,7 @@ function RouterNavigation() {
     <BrowserRouter>
       <Switch>
         <Route path={'/search'} component={App} />
-        <Redirect from={'/'} to="/search" />
+        <Redirect from={'/'} exact to="/search" />
         <Route path={'*'}>
           <NotFound />
         </Route>

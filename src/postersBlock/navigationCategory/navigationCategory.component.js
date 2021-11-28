@@ -1,22 +1,27 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Line } from '../../global/globalStyles';
 import { NavigationItem, NavigationList, SortList, SortListBlock, SortListText } from './navigationCategory.styled';
 import { links, variantSorts } from '../../global/constants/global.constants';
 import PropTypes from 'prop-types';
-import { useHistory, useLocation } from 'react-router-dom';
-import { pushQueryForSearch } from '../../global/helpers';
+import { useHistory } from 'react-router-dom';
+import { findQueryByName, pushQueryForSearch } from '../../global/helpers';
 
 const NavigationCategory = ({ getPostersByActiveNavWithSort, changeVariantSort, activeNav, changeActiveNav }) => {
   const history = useHistory();
-  const location = useLocation();
-  useEffect(() => getPostersByActiveNavWithSort(), []);
+
+  useEffect(() => {
+    const isQueryGenre = findQueryByName(history.location.search, 'genre');
+    isQueryGenre ? changeActiveNav(isQueryGenre) : getPostersByActiveNavWithSort();
+  }, []);
+
   const changeGenre = link => {
     history.push({
       pathname: '/search',
-      search: pushQueryForSearch(location.search, 'genre', link.text === 'all' ? '' : link.text),
+      search: pushQueryForSearch(history.location.search, 'genre', link.text === 'all' ? '' : link.text),
     });
     changeActiveNav(link.text);
   };
+
   return (
     <>
       <NavigationList>
@@ -47,22 +52,31 @@ export default memo(NavigationCategory);
 
 const SortComponent = ({ changeVariantSort }) => {
   const history = useHistory();
-  const location = useLocation();
+  const [defSort, setDefSort] = useState(() => variantSorts[0].name);
+
+  useEffect(() => {
+    const isQuerySortBy = findQueryByName(history.location.search, 'sortBy');
+    if (isQuerySortBy) {
+      changeVariantSort(isQuerySortBy);
+      setDefSort(isQuerySortBy);
+    }
+  }, []);
+
   const changeSort = e => {
-    const selectedSortName = variantSorts[e.target.value].name;
     history.push({
       pathname: '/search',
-      search: pushQueryForSearch(location.search, 'sortBy', selectedSortName),
+      search: pushQueryForSearch(history.location.search, 'sortBy', e.target.value),
     });
-
-    changeVariantSort(selectedSortName);
+    setDefSort(e.target.value);
+    changeVariantSort(e.target.value);
   };
+
   return (
     <SortListBlock>
       <SortListText> Sort by</SortListText>
-      <SortList name="sort" defaultValue={variantSorts[1].name} onChange={e => changeSort(e)}>
+      <SortList name="sort" value={defSort} onChange={e => changeSort(e)}>
         {variantSorts.map((variant, index) => (
-          <option key={index} value={index}>
+          <option key={index} value={variant.name}>
             {variant.label}
           </option>
         ))}

@@ -12,6 +12,11 @@ import {
   GET_POSTER_BY_ID_STARTED,
   GET_POSTER_BY_ID_FAILURE,
   GET_POSTER_BY_ID_FOR_POSTER_INFO_SUCCESS,
+  SET_POSTER_DATA_FROM_FORM,
+  GET_POSTERS_BY_SEARCH_TOTAL_AMOUNT,
+  GET_POSTERS_BY_SEARCH_STARTED,
+  GET_POSTERS_BY_SEARCH_SUCCESS,
+  GET_POSTERS_BY_SEARCH_FAILURE,
 } from '../actions/types';
 
 const initialState = {
@@ -22,6 +27,7 @@ const initialState = {
   selectedPoster: null,
   posterDataById: null,
   posterDataForPosterInfo: null,
+  posterDataFromForm: '',
 };
 
 export default function postersReducer(state = initialState, action) {
@@ -40,6 +46,13 @@ export default function postersReducer(state = initialState, action) {
     case GET_POSTERS_BY_CATEGORY_FAILURE:
       return { ...state, loading: false, error: action.payload.error };
 
+    case GET_POSTERS_BY_SEARCH_STARTED:
+      return { ...state, loading: true };
+    case GET_POSTERS_BY_SEARCH_SUCCESS:
+      return { ...state, loading: false, error: null, data: action.payload };
+    case GET_POSTERS_BY_SEARCH_FAILURE:
+      return { ...state, loading: false, error: action.payload.error };
+
     case GET_POSTER_BY_ID_STARTED:
       return { ...state, loading: true };
     case GET_POSTER_BY_ID_SUCCESS:
@@ -53,9 +66,14 @@ export default function postersReducer(state = initialState, action) {
       return { ...state, numberOfPosters: action.payload };
     case GET_POSTERS_BY_CATEGORY_TOTAL_AMOUNT:
       return { ...state, numberOfPosters: action.payload };
+    case GET_POSTERS_BY_SEARCH_TOTAL_AMOUNT:
+      return { ...state, numberOfPosters: action.payload };
 
     case SET_SELECTED_POSTER:
       return { ...state, selectedPoster: action.payload };
+
+    case SET_POSTER_DATA_FROM_FORM:
+      return { ...state, posterDataFromForm: action.payload };
     default:
       return state;
   }

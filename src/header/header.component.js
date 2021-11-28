@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Header, SelectedImg, TopMenu } from './header.styled';
-import SearchForm from './searchForm/searchForm.component';
+import SearchForm from './searchForm/searchForm.connector';
 import LogoComponent from '../global/components/logo/logo.component';
 import { ButtonMovie } from './addMovie/addMovie.styled';
 import Search_Button from '../../public/images/Search_Button.png';
@@ -10,13 +10,12 @@ import { LazyImage } from '../global/components/lazyImage/lazyImage.compoent';
 import headerImg from '../../public/images/Header.png';
 import PropTypes from 'prop-types';
 import { statusForm } from '../global/constants/global.constants';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const HeaderComponent = ({ setSelectedPoster, selectedPoster, openModal }) => {
   const history = useHistory();
-  const location = useLocation();
   const closeSelectedPoster = useCallback(() => {
-    const searchParams = new URLSearchParams(location.search);
+    const searchParams = new URLSearchParams(history.location.search);
     searchParams.delete('movie');
 
     history.push({
