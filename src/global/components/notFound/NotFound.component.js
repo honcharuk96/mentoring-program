@@ -1,13 +1,12 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import {useRouter} from 'next/router';
 
 const NotFound = () => {
-  let location = useLocation();
-
+    const router = useRouter()
   return (
     <div>
       <h3>
-        No match for <code>{location.pathname}</code>
+        No match for <code>{router.asPath}</code>
       </h3>
     </div>
   );

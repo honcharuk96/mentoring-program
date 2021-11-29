@@ -3,21 +3,19 @@ import { Line } from '../../global/globalStyles';
 import { NavigationItem, NavigationList, SortList, SortListBlock, SortListText } from './navigationCategory.styled';
 import { links, variantSorts } from '../../global/constants/global.constants';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
-import { findQueryByName, pushQueryForSearch } from '../../global/helpers';
+import {useRouter} from 'next/router';
 
 const NavigationCategory = ({ getPostersByActiveNavWithSort, changeVariantSort, activeNav, changeActiveNav }) => {
-  const history = useHistory();
-
+  const router = useRouter()
   useEffect(() => {
-    const isQueryGenre = findQueryByName(history.location.search, 'genre');
+    const isQueryGenre =router.query['genre'];
     isQueryGenre ? changeActiveNav(isQueryGenre) : getPostersByActiveNavWithSort();
   }, []);
 
   const changeGenre = link => {
-    history.push({
-      pathname: '/search',
-      search: pushQueryForSearch(history.location.search, 'genre', link.text === 'all' ? '' : link.text),
+    router.push({
+      pathname: '/search/',
+      query: {...router.query, genre: link.text === 'all' ? '' : link.text},
     });
     changeActiveNav(link.text);
   };
@@ -51,11 +49,12 @@ NavigationCategory.propTypes = {
 export default memo(NavigationCategory);
 
 const SortComponent = ({ changeVariantSort }) => {
-  const history = useHistory();
+
+  const router = useRouter()
   const [defSort, setDefSort] = useState(() => variantSorts[0].name);
 
   useEffect(() => {
-    const isQuerySortBy = findQueryByName(history.location.search, 'sortBy');
+    const isQuerySortBy = router.query['sortBy'];
     if (isQuerySortBy) {
       changeVariantSort(isQuerySortBy);
       setDefSort(isQuerySortBy);
@@ -63,9 +62,9 @@ const SortComponent = ({ changeVariantSort }) => {
   }, []);
 
   const changeSort = e => {
-    history.push({
+    router.push({
       pathname: '/search',
-      search: pushQueryForSearch(history.location.search, 'sortBy', e.target.value),
+      query:  {...router.query,sortBy: e.target.value},
     });
     setDefSort(e.target.value);
     changeVariantSort(e.target.value);

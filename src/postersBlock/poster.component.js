@@ -3,15 +3,15 @@ import { Date, Poster, PosterInfo, PosterTitle } from './postersBlock.styled';
 import PropTypes from 'prop-types';
 import PosterCategoryComponent from './posterCategory/posterCategory.component';
 import { LazyImage } from '../global/components/lazyImage/lazyImage.compoent';
-import { useHistory } from 'react-router-dom';
-import { pushQueryForSearch } from '../global/helpers';
+import {useRouter} from 'next/router';
 
 const PosterComponent = ({ id, src, alt, title, date, genres, setSelectedPoster }) => {
-  const history = useHistory();
+
+  const router = useRouter()
   const clickOnPoster = posterId => {
-    history.push({
+    router.push({
       pathname: '/search',
-      search: pushQueryForSearch(history.location.search, 'movie', posterId),
+      query: {...router.query, movie:posterId},
     });
     setSelectedPoster(posterId);
   };
