@@ -14,10 +14,15 @@ import {
   GET_POSTERS_BY_CATEGORY_STARTED,
   GET_POSTERS_BY_CATEGORY_SUCCESS,
   GET_POSTERS_BY_CATEGORY_TOTAL_AMOUNT,
+  GET_POSTERS_BY_SEARCH_FAILURE,
+  GET_POSTERS_BY_SEARCH_STARTED,
+  GET_POSTERS_BY_SEARCH_SUCCESS,
+  GET_POSTERS_BY_SEARCH_TOTAL_AMOUNT,
   GET_POSTERS_FAILURE,
   GET_POSTERS_STARTED,
   GET_POSTERS_SUCCESS,
   GET_POSTERS_TOTAL_AMOUNT,
+  SET_POSTER_DATA_FROM_FORM,
   SET_SELECTED_POSTER,
   UPDATE_POSTER_FAILURE,
   UPDATE_POSTER_STARTED,
@@ -27,6 +32,11 @@ import {
 export const setSelectedPoster = id => ({
   type: SET_SELECTED_POSTER,
   payload: id,
+});
+
+export const setPosterDataFromForm = searchData => ({
+  type: SET_POSTER_DATA_FROM_FORM,
+  payload: searchData,
 });
 
 const getPostersTotalAmountSuccess = totalAmount => ({
@@ -75,6 +85,12 @@ const getPostersByCategoryTotalAmountSuccess = totalAmount => ({
   type: GET_POSTERS_BY_CATEGORY_TOTAL_AMOUNT,
   payload: totalAmount,
 });
+
+const getPostersBySearchTotalAmountSuccess = totalAmount => ({
+  type: GET_POSTERS_BY_SEARCH_TOTAL_AMOUNT,
+  payload: totalAmount,
+});
+
 const getPostersByCategorySuccess = listOfPosters => ({
   type: GET_POSTERS_BY_CATEGORY_SUCCESS,
   payload: listOfPosters,
@@ -84,8 +100,23 @@ const getPostersByCategoryStarted = () => ({
   type: GET_POSTERS_BY_CATEGORY_STARTED,
 });
 
+const getPostersBySearchStarted = () => ({
+  type: GET_POSTERS_BY_SEARCH_STARTED,
+});
+
+const getPostersBySearchSuccess = listOfPosters => ({
+  type: GET_POSTERS_BY_SEARCH_SUCCESS,
+  payload: listOfPosters,
+});
+
 const getPostersByCategoryFailure = error => ({
   type: GET_POSTERS_BY_CATEGORY_FAILURE,
+  payload: {
+    error,
+  },
+});
+const getPostersBySearchFailure = error => ({
+  type: GET_POSTERS_BY_SEARCH_FAILURE,
   payload: {
     error,
   },
@@ -164,6 +195,20 @@ export const getPostersByActiveNavWithSort = () => async (dispatch, getState) =>
     dispatch(getPostersByCategoryTotalAmountSuccess(result.data.totalAmount));
   } catch (err) {
     dispatch(getPostersByCategoryFailure(err.message));
+  }
+};
+
+export const getPostersBySearch = () => async (dispatch, getState) => {
+  const { posters } = getState();
+  let params = { sortOrder: 'desc', search: posters.posterDataFromForm, searchBy: 'title' };
+
+  dispatch(getPostersBySearchStarted());
+  try {
+    const result = await API.get('/', { params });
+    dispatch(getPostersBySearchSuccess(result.data.data));
+    dispatch(getPostersBySearchTotalAmountSuccess(result.data.totalAmount));
+  } catch (err) {
+    dispatch(getPostersBySearchFailure(err.message));
   }
 };
 

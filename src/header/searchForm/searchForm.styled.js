@@ -10,7 +10,7 @@ export const Search = styled.div`
   margin: auto;
 `;
 
-export const Inputs = styled.div`
+export const Inputs = styled.form`
   display: flex;
   flex-direction: row;
   width: 100%;

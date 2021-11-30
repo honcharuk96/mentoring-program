@@ -10,9 +10,11 @@ module.exports = ({ mode } = { mode: 'production' }) => {
     return merge({
         mode,
         entry: './src/index.js',
+            devtool: 'eval-source-map',
         devServer: {
             hot: true,
             open: true,
+            historyApiFallback: true,
         },
 
         output: {
