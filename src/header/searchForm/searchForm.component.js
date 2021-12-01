@@ -2,22 +2,22 @@ import React, { memo, useEffect, useState } from 'react';
 import { Inputs, SearchInput, Search, Text } from './searchForm.styled';
 import RedButton from '../../global/components/redButton/redButton.component';
 import { parseFromUrl } from '../../global/helpers';
-import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {useRouter} from 'next/router';
 
 const SearchForm = ({ setPosterDataFromForm }) => {
   const [searchValue, setSearchValue] = useState('');
-  const history = useHistory();
+  const router = useRouter()
   useEffect(() => {
-    const data = parseFromUrl(history.location.pathname);
+    const data = parseFromUrl(router.asPath);
     if (data.length) {
       setPosterDataFromForm(data);
     }
   }, []);
   const submitSearchValue = () => {
-    history.push({
-      pathname: `/search/${searchValue}`,
-      search: history.location.search,
+    router.push({
+      pathname: `/search/[${searchValue}]`,
+      search: router.query,
     });
     setPosterDataFromForm(searchValue);
   };
