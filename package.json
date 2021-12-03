@@ -30,6 +30,9 @@
       "not op_mini all"
     ]
   },
+  "jest":{
+    "testEnvironment": "jsdom"
+  },
   "scripts": {
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
@@ -39,12 +42,13 @@
     "lint:css": "stylelint src/ --cache",
     "lint:js": "eslint --max-warnings=0 src/ --cache",
     "format": "yarn format:js",
-    "format:js": "prettier-eslint --write $PWD/'src/**/*.js'"
+    "format:js": "prettier-eslint --write $PWD/'src/**/*.js'",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^12.1.1",
+    "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.22.0",
     "formik": "^2.2.9",
@@ -67,6 +71,7 @@
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
     "@hot-loader/react-dom": "^17.0.1",
+    "@types/jest": "^27.0.3",
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.13.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -78,6 +83,7 @@
     "file-loader": "^6.2.0",
     "history": "^5.1.0",
     "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.4.3",
     "mini-css-extract-plugin": "^2.2.0",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
     "prettier-eslint-cli": "^5.0.1",

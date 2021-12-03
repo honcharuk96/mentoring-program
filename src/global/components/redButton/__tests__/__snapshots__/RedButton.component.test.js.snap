@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RedButtonComponent snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="redButtonstyled__RedButton-sc-1vactyr-0 ceXiMR"
+  >
+    test
+  </div>
+</DocumentFragment>
+`;
