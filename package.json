@@ -30,8 +30,17 @@
       "not op_mini all"
     ]
   },
-  "jest":{
-    "testEnvironment": "jsdom"
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "testEnvironment": "jsdom",
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
   },
   "scripts": {
     "webpack": "webpack",
@@ -43,7 +52,8 @@
     "lint:js": "eslint --max-warnings=0 src/ --cache",
     "format": "yarn format:js",
     "format:js": "prettier-eslint --write $PWD/'src/**/*.js'",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
@@ -59,6 +69,7 @@
     "react-redux": "^7.2.6",
     "react-scripts": "4.0.3",
     "react-select": "^5.1.0",
+    "react-test-renderer": "^17.0.2",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.0",
@@ -84,6 +95,7 @@
     "history": "^5.1.0",
     "html-webpack-plugin": "^5.3.2",
     "jest": "^27.4.3",
+    "jest-styled-components": "^7.0.8",
     "mini-css-extract-plugin": "^2.2.0",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
     "prettier-eslint-cli": "^5.0.1",

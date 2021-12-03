@@ -1,11 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RedButtonComponent snapshot 1`] = `
-<DocumentFragment>
-  <div
-    class="redButtonstyled__RedButton-sc-1vactyr-0 ceXiMR"
-  >
-    test
-  </div>
-</DocumentFragment>
+exports[`RedButtonComponent default button 1`] = `
+.c0 {
+  padding: 18px 70px;
+  border-radius: 4px;
+  background: #f65261;
+  color: #ffffff;
+  border: 1px solid #f65261;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+  onClick={null}
+>
+  test
+</div>
+`;
+
+exports[`RedButtonComponent revert button 1`] = `
+.c0 {
+  padding: 18px 70px;
+  border-radius: 4px;
+  background: #232323;
+  color: #f65261;
+  border: 1px solid #f65261;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+  onClick={null}
+>
+  test
+</div>
 `;
