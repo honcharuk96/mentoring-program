@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PostersArea /> should render PostersArea 1`] = `
+<React.Fragment>
+  <globalStyles__Main>
+    <Memo(Connect(Component)) />
+    <Memo(Connect(Component)) />
+    <Memo(Connect(ListPosters)) />
+  </globalStyles__Main>
+</React.Fragment>
+`;

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HeaderComponent /> should render HeaderComponent with selectedPoster 1`] = `
+<React.Fragment>
+  <globalStyles__Main>
+    <headerstyled__TopMenu
+      isPosterSelected={true}
+    >
+      <Memo(LogoComponent) />
+      <headerstyled__SelectedImg
+        alt="close"
+        loading="lazy"
+        onClick={[Function]}
+        src="test-file-stub"
+      />
+    </headerstyled__TopMenu>
+    <Memo(Connect(PosterInfoComponent))
+      posterId={1}
+    />
+  </globalStyles__Main>
+</React.Fragment>
+`;
+
+exports[`<HeaderComponent /> should render HeaderComponent without selectedPoster 1`] = `
+<React.Fragment>
+  <React.Fragment>
+    <headerstyled__Header>
+      <LazyImage
+        alt="main"
+        isBanner={true}
+        src="test-file-stub"
+      />
+      <headerstyled__TopMenu>
+        <Memo(LogoComponent) />
+        <addMoviestyled__ButtonMovie
+          onClick={[Function]}
+        />
+      </headerstyled__TopMenu>
+      <Memo(Connect(Component)) />
+    </headerstyled__Header>
+  </React.Fragment>
+</React.Fragment>
+`;

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListPosters /> should render ListPosters when list is empty 1`] = `
+<React.Fragment>
+  <postersBlockstyled__Posters />
+</React.Fragment>
+`;
+
+exports[`<ListPosters /> should render ListPosters when list is not empty 1`] = `
+<React.Fragment>
+  <postersBlockstyled__Posters>
+    <Memo(Connect(HoverForOpenEditOrDeleteComponent))
+      id={337167}
+    >
+      <Memo(Connect(Component))
+        alt="Fifty Shades Freed"
+        date="2018-02-07"
+        genres={
+          Array [
+            "Drama",
+            "Romance",
+          ]
+        }
+        id={337167}
+        src="https://image.tmdb.org/t/p/w500/3kcEGnYBHDeqmdYf8ZRbKdfmlUy.jpg"
+        title="Fifty Shades Freed"
+      />
+    </Memo(Connect(HoverForOpenEditOrDeleteComponent))>
+  </postersBlockstyled__Posters>
+</React.Fragment>
+`;
