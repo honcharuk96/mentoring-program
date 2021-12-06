@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LazyImage /> should render LazyImage 1`] = `
+<DocumentFragment>
+  <img
+    alt="test"
+    class="lazyImagecompoent__Image-sc-inbsub-0 cvpBYK"
+    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII="
+  />
+</DocumentFragment>
+`;
+
+exports[`<LazyImage /> should render LazyImage isBanner 1`] = `
+<DocumentFragment>
+  <img
+    alt="test"
+    class="lazyImagecompoent__Image-sc-inbsub-0 gaLdew"
+    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII="
+  />
+</DocumentFragment>
+`;

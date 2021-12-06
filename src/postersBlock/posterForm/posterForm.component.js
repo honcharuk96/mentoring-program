@@ -55,9 +55,9 @@ PosterForm.defaultProps = {
 
 PosterForm.propTypes = {
   modalForm: PropTypes.shape({
-    [statusForm.ADD]: PropTypes.bool.isRequired,
-    [statusForm.UPDATE]: PropTypes.bool.isRequired,
-    [statusForm.DELETE]: PropTypes.bool.isRequired,
+    [statusForm.ADD]: PropTypes.bool,
+    [statusForm.UPDATE]: PropTypes.bool,
+    [statusForm.DELETE]: PropTypes.bool,
     idForModal: PropTypes.number,
   }),
   closeForms: PropTypes.func.isRequired,

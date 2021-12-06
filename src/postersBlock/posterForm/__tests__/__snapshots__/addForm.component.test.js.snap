@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PosterAddForm /> should render PosterForm without modalForm 1`] = `
+<DocumentFragment>
+  <h2
+    class="posterFormstyled__FormHeader-sc-29zlku-7 EFMyG"
+  >
+    Add movie
+  </h2>
+  <div
+    class="posterFormstyled__InputWrapper-sc-29zlku-0 brdymf"
+  >
+    <label
+      class="posterFormstyled__Label-sc-29zlku-6 bNRocu"
+    >
+      title
+      <input
+        class="posterFormstyled__Input-sc-29zlku-1 kJgLlf"
+        name="title"
+        type="text"
+        value=""
+      />
+    </label>
+    <label
+      class="posterFormstyled__Label-sc-29zlku-6 bNRocu"
+    >
+      date
+      <input
+        class="posterFormstyled__Input-sc-29zlku-1 kJgLlf"
+        name="release_date"
+        type="date"
+        value=""
+      />
+    </label>
+    <label
+      class="posterFormstyled__Label-sc-29zlku-6 bNRocu"
+    >
+      movie url
+      <input
+        class="posterFormstyled__Input-sc-29zlku-1 kJgLlf"
+        name="poster_path"
+        type="url"
+        value=""
+      />
+    </label>
+    <label
+      class="posterFormstyled__Label-sc-29zlku-6 bNRocu"
+    >
+      rating
+      <input
+        class="posterFormstyled__Input-sc-29zlku-1 kJgLlf"
+        name="vote_average"
+        type="number"
+        value=""
+      />
+    </label>
+    <label
+      class="posterFormstyled__Label-sc-29zlku-6 gLFjVp"
+    >
+      genre
+      <span
+        class="d-inline-block"
+        data-content="Please select genres(s)"
+        data-toggle="popover"
+        data-trigger="focus"
+      >
+        <div
+          class=" css-b62m3t-container"
+          id="reactSelect"
+        >
+          <span
+            class="css-1f43avz-a11yText-A11yText"
+            id="react-select-2-live-region"
+          />
+          <span
+            aria-atomic="false"
+            aria-live="polite"
+            aria-relevant="additions text"
+            class="css-1f43avz-a11yText-A11yText"
+          />
+          <div
+            class=" css-1s2u09g-control"
+          >
+            <div
+              class=" css-319lph-ValueContainer"
+            >
+              <div
+                class=" css-14el2xx-placeholder"
+                id="react-select-2-placeholder"
+              >
+                Select...
+              </div>
+              <div
+                class=" css-14dclt2-Input"
+                data-value=""
+              >
+                <input
+                  aria-autocomplete="list"
+                  aria-controls="react-select-2-listbox"
+                  aria-describedby="react-select-2-placeholder"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  aria-owns="react-select-2-listbox"
+                  autocapitalize="none"
+                  autocomplete="off"
+                  autocorrect="off"
+                  class=""
+                  id="react-select-2-input"
+                  role="combobox"
+                  spellcheck="false"
+                  style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                  tabindex="0"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class=" css-1hb7zxy-IndicatorsContainer"
+            >
+              <span
+                class=" css-1okebmr-indicatorSeparator"
+              />
+              <div
+                aria-hidden="true"
+                class=" css-tlfecz-indicatorContainer"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="css-tj5bde-Svg"
+                  focusable="false"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  width="20"
+                >
+                  <path
+                    d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div>
+            <input
+              name="genre"
+              type="hidden"
+            />
+          </div>
+        </div>
+      </span>
+    </label>
+    <label
+      class="posterFormstyled__Label-sc-29zlku-6 bNRocu"
+    >
+      runtime
+      <input
+        class="posterFormstyled__Input-sc-29zlku-1 kJgLlf"
+        name="runtime"
+        type="number"
+        value="0"
+      />
+    </label>
+    <label
+      class="posterFormstyled__Label-sc-29zlku-6 efjAfC"
+    >
+      overview
+      <textarea
+        class="posterFormstyled__TextArea-sc-29zlku-3 jOsCoD"
+        name="overview"
+      />
+    </label>
+  </div>
+  <div
+    class="posterFormstyled__ButList-sc-29zlku-9 gtJZgY"
+  >
+    <div
+      class="redButtonstyled__RedButton-sc-1vactyr-0 eImyGE"
+    >
+      Reset
+    </div>
+    <div
+      class="redButtonstyled__RedButton-sc-1vactyr-0 ihxqXl"
+    >
+      Submit
+    </div>
+  </div>
+</DocumentFragment>
+`;

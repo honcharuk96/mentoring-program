@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PosterComponent /> should render PosterComponent 1`] = `
+<postersBlockstyled__Poster
+  id={337167}
+  onClick={[Function]}
+>
+  <LazyImage
+    alt="Don't miss the climax"
+    src="https://image.tmdb.org/t/p/w500/3kcEGnYBHDeqmdYf8ZRbKdfmlUy.jpg"
+  />
+  <postersBlockstyled__PosterInfo>
+    <postersBlockstyled__PosterTitle>
+      Fifty Shades Freed
+    </postersBlockstyled__PosterTitle>
+    <postersBlockstyled__Date>
+      2018
+    </postersBlockstyled__Date>
+  </postersBlockstyled__PosterInfo>
+  <PosterCategoryComponent
+    genres={
+      Array [
+        "Drama",
+        "Romance",
+      ]
+    }
+  />
+</postersBlockstyled__Poster>
+`;

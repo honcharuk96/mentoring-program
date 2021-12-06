@@ -30,6 +30,21 @@
       "not op_mini all"
     ]
   },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.ts"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "testEnvironment": "jsdom",
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
+  },
   "scripts": {
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
@@ -39,12 +54,14 @@
     "lint:css": "stylelint src/ --cache",
     "lint:js": "eslint --max-warnings=0 src/ --cache",
     "format": "yarn format:js",
-    "format:js": "prettier-eslint --write $PWD/'src/**/*.js'"
+    "format:js": "prettier-eslint --write $PWD/'src/**/*.js'",
+    "test": "jest --watch",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^12.1.1",
+    "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.22.0",
     "formik": "^2.2.9",
@@ -55,6 +72,7 @@
     "react-redux": "^7.2.6",
     "react-scripts": "4.0.3",
     "react-select": "^5.1.0",
+    "react-test-renderer": "^17.0.2",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.0",
@@ -67,6 +85,8 @@
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
     "@hot-loader/react-dom": "^17.0.1",
+    "@testing-library/dom": "^8.11.1",
+    "@types/jest": "^27.0.3",
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.13.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -78,6 +98,8 @@
     "file-loader": "^6.2.0",
     "history": "^5.1.0",
     "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.4.3",
+    "jest-styled-components": "^7.0.8",
     "mini-css-extract-plugin": "^2.2.0",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
     "prettier-eslint-cli": "^5.0.1",

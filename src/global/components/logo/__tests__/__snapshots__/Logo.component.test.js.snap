@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LogoComponent snapshot 1`] = `
+<logostyled__Logo>
+  <globalStyles__Bold>
+    netflix
+  </globalStyles__Bold>
+  roulette
+</logostyled__Logo>
+`;

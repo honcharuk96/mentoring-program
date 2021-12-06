@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchForm /> should render SearchForm withoutPosterData 1`] = `
+<React.Fragment>
+  <searchFormstyled__Search>
+    <searchFormstyled__Text>
+      FIND YOUR MOViE
+    </searchFormstyled__Text>
+    <searchFormstyled__Inputs
+      onSubmit={[Function]}
+    >
+      <searchFormstyled__SearchInput
+        onChange={[Function]}
+        value=""
+      />
+      <RedButtonComponent
+        click={[Function]}
+        revertColor={false}
+        text="search"
+      />
+    </searchFormstyled__Inputs>
+  </searchFormstyled__Search>
+</React.Fragment>
+`;

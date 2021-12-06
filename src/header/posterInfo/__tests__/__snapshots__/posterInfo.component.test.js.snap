@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PosterInfoComponent /> should render PosterInfoComponent with poster 1`] = `
+<posterInfostyled__PosterDetail>
+  <posterInfostyled__PosterDetailRightBlock>
+    <postersBlockstyled__Img
+      alt="Fifty Shades Freed"
+      loading="lazy"
+      src="https://image.tmdb.org/t/p/w500/3kcEGnYBHDeqmdYf8ZRbKdfmlUy.jpg"
+    />
+  </posterInfostyled__PosterDetailRightBlock>
+  <posterInfostyled__PosterDetailLeftBlock>
+    <posterInfostyled__PosterDetailHeader>
+      <posterInfostyled__PosterDetailTitle>
+        Fifty Shades Freed
+      </posterInfostyled__PosterDetailTitle>
+      <posterInfostyled__PosterDetailVoteAverage>
+        6.1
+      </posterInfostyled__PosterDetailVoteAverage>
+    </posterInfostyled__PosterDetailHeader>
+    <PosterCategoryComponent
+      genres={
+        Array [
+          "Drama",
+          "Romance",
+        ]
+      }
+    />
+    <posterInfostyled__PosterDetailTimes>
+      <posterInfostyled__PosterDetailDate>
+        2018
+      </posterInfostyled__PosterDetailDate>
+      <posterInfostyled__PosterDetailDate>
+        1h 46min
+      </posterInfostyled__PosterDetailDate>
+    </posterInfostyled__PosterDetailTimes>
+    <posterInfostyled__PosterDetailOverview>
+      Believing they have left behind shadowy figures from their past, newlyweds Christian and Ana fully embrace an inextricable connection and shared life of luxury. But just as she steps into her role as Mrs. Grey and he relaxes into an unfamiliar stability, new threats could jeopardize their happy ending before it even begins.
+    </posterInfostyled__PosterDetailOverview>
+  </posterInfostyled__PosterDetailLeftBlock>
+</posterInfostyled__PosterDetail>
+`;
+
+exports[`<PosterInfoComponent /> should render PosterInfoComponent without poster 1`] = `undefined`;
