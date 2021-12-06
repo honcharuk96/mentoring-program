@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavigationCategory /> should render NavigationCategory 1`] = `
+<DocumentFragment>
+  <nav
+    class="navigationCategorystyled__NavigationList-sc-1bdsphd-0 bfkBTY"
+  >
+    <li
+      class="navigationCategorystyled__NavigationItem-sc-1bdsphd-1 cVQqkF"
+    >
+      all
+    </li>
+    <li
+      class="navigationCategorystyled__NavigationItem-sc-1bdsphd-1 iaUwum"
+    >
+      documentary
+    </li>
+    <li
+      class="navigationCategorystyled__NavigationItem-sc-1bdsphd-1 iaUwum"
+    >
+      comedy
+    </li>
+    <li
+      class="navigationCategorystyled__NavigationItem-sc-1bdsphd-1 iaUwum"
+    >
+      horror
+    </li>
+    <li
+      class="navigationCategorystyled__NavigationItem-sc-1bdsphd-1 iaUwum"
+    >
+      crime
+    </li>
+    <div
+      class="navigationCategorystyled__SortListBlock-sc-1bdsphd-4 kAzxwq"
+    >
+      <div
+        class="navigationCategorystyled__SortListText-sc-1bdsphd-3 ioMoJm"
+      >
+         Sort by
+      </div>
+      <select
+        class="navigationCategorystyled__SortList-sc-1bdsphd-2 cAbzVg"
+        data-testid="select"
+        name="sort"
+      >
+        <option
+          value="release_date"
+        >
+          Release date
+        </option>
+        <option
+          value="vote_average"
+        >
+          Rating
+        </option>
+      </select>
+    </div>
+  </nav>
+  <div
+    class="globalStyles__Line-sc-osyo6d-1 fxqYku"
+  />
+</DocumentFragment>
+`;
+
+exports[`<NavigationCategory /> should render SortComponent 1`] = `
+<DocumentFragment>
+  <div
+    class="navigationCategorystyled__SortListBlock-sc-1bdsphd-4 kAzxwq"
+  >
+    <div
+      class="navigationCategorystyled__SortListText-sc-1bdsphd-3 ioMoJm"
+    >
+       Sort by
+    </div>
+    <select
+      class="navigationCategorystyled__SortList-sc-1bdsphd-2 cAbzVg"
+      data-testid="select"
+      name="sort"
+    >
+      <option
+        value="release_date"
+      >
+        Release date
+      </option>
+      <option
+        value="vote_average"
+      >
+        Rating
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
+`;

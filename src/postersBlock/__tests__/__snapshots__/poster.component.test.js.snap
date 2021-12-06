@@ -20,10 +20,8 @@ exports[`<PosterComponent /> should render PosterComponent 1`] = `
   <PosterCategoryComponent
     genres={
       Array [
-        Array [
-          "Drama",
-          "Romance",
-        ],
+        "Drama",
+        "Romance",
       ]
     }
   />

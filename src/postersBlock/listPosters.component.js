@@ -43,3 +43,7 @@ ListPosters.propTypes = {
     }),
   ),
 };
+
+ListPosters.defaultProps = {
+  listOfPosters: [],
+};

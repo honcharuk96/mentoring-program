@@ -20,5 +20,5 @@ PosterCategoryComponent.propTypes = {
 };
 
 PosterCategoryComponent.defaultProps = {
-  genres:[],
-}
+  genres: [],
+};

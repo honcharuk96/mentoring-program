@@ -1,8 +1,9 @@
 import React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
-import PosterComponent from '../poster.component';
+import { render } from '@testing-library/react';
+import PosterUpdateForm from '../updateForm.component';
 
-const shallow = new ShallowRenderer();
+const updatePoster = jest.fn();
+const closeForms = jest.fn();
 const poster = {
   id: 337167,
   title: 'Fifty Shades Freed',
@@ -18,20 +19,12 @@ const poster = {
   genres: ['Drama', 'Romance'],
   runtime: 106,
 };
-const setSelectedPoster = jest.fn();
-describe('<PosterComponent />', () => {
-  it('should render PosterComponent', () => {
-    const header = shallow.render(
-      <PosterComponent
-        id={poster.id}
-        src={poster.poster_path}
-        alt={poster.tagline}
-        title={poster.title}
-        date={poster.release_date}
-        genres={poster.genres}
-        setSelectedPoster={setSelectedPoster}
-      />,
+describe('<PosterUpdateForm />', () => {
+  it('should render PosterUpdateForm ', () => {
+    const { asFragment } = render(
+      <PosterUpdateForm updatePoster={updatePoster} posterData={poster} closeForm={closeForms} />,
     );
-    expect(header).toMatchSnapshot();
+    // expect(observe).toHaveBeenCalled();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

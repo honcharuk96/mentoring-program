@@ -50,7 +50,7 @@ NavigationCategory.propTypes = {
 
 export default memo(NavigationCategory);
 
-const SortComponent = ({ changeVariantSort }) => {
+export const SortComponent = ({ changeVariantSort }) => {
   const history = useHistory();
   const [defSort, setDefSort] = useState(() => variantSorts[0].name);
 
@@ -74,7 +74,7 @@ const SortComponent = ({ changeVariantSort }) => {
   return (
     <SortListBlock>
       <SortListText> Sort by</SortListText>
-      <SortList name="sort" value={defSort} onChange={e => changeSort(e)}>
+      <SortList name="sort" value={defSort} onChange={e => changeSort(e)} data-testid={'select'}>
         {variantSorts.map((variant, index) => (
           <option key={index} value={variant.name}>
             {variant.label}
