@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { PosterCategory } from './posterCategory.styled';
 import PropTypes from 'prop-types';
 
@@ -13,8 +13,12 @@ const PosterCategoryComponent = ({ genres }) => (
   </PosterCategory>
 );
 
-export default memo(PosterCategoryComponent);
+export default PosterCategoryComponent;
 
 PosterCategoryComponent.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string.isRequired),
 };
+
+PosterCategoryComponent.defaultProps = {
+  genres:[],
+}

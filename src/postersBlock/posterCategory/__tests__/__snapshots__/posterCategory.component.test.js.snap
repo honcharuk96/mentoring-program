@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PosterCategoryComponent /> should render PosterCategoryComponent 1`] = `
+<DocumentFragment>
+  <div
+    class="posterCategorystyled__PosterCategory-sc-szupof-0 gVdyHw"
+  />
+</DocumentFragment>
+`;

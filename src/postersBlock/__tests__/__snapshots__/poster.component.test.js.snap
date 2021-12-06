@@ -17,7 +17,7 @@ exports[`<PosterComponent /> should render PosterComponent 1`] = `
       2018
     </postersBlockstyled__Date>
   </postersBlockstyled__PosterInfo>
-  <Memo(PosterCategoryComponent)
+  <PosterCategoryComponent
     genres={
       Array [
         Array [

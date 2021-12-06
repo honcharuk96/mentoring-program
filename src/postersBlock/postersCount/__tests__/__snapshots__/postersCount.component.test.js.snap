@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PosterCountComponent /> should render PosterCountComponent 1`] = `
+<DocumentFragment>
+  <div
+    class="postersCountstyled__PosterCount-sc-1pea39c-0 yEgcm"
+  >
+    <span
+      class="globalStyles__Bold-sc-osyo6d-2 SWMjf"
+    >
+      <span>
+        0
+      </span>
+    </span>
+     movie found
+  </div>
+</DocumentFragment>
+`;

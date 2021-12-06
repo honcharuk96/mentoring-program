@@ -18,7 +18,7 @@ exports[`<PosterInfoComponent /> should render PosterInfoComponent with poster 1
         6.1
       </posterInfostyled__PosterDetailVoteAverage>
     </posterInfostyled__PosterDetailHeader>
-    <Memo(PosterCategoryComponent)
+    <PosterCategoryComponent
       genres={
         Array [
           "Drama",
